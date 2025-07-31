@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRISIS - Streetwear Peruano | NBC Drop</title>
+    <meta name="description" content="Crisis - Streetwear auténtico desde las calles de Lima. Junior y Jheremi creando cultura urbana.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Black+Ops+One&family=Teko:wght@300;400;500;600;700&family=Russo+One&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden;
+            background: 
+                linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(255,255,255,0.02) 100px,
+                    rgba(255,255,255,0.02) 101px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(128,128,128,0.03) 100px,
+                    rgba(128,128,128,0.03) 101px
+                );
+            background-attachment: fixed;
+        }
+        
+        .urban-font { font-family: 'Black Ops One', cursive; }
+        .tech-font { font-family: 'Teko', sans-serif; }
+        .street-font { font-family: 'Russo One', sans-serif; }
+        .modern-font { font-family: 'Orbitron', monospace; }
+        .aggressive-font { font-family: 'Rajdhani', sans-serif; }
+        
+
+        
+        /* Urban static texture overlay */
+        .mega-texture {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255,255,255,0.015) 2px,
+                    rgba(255,255,255,0.015) 4px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0,0,0,0.05) 2px,
+                    rgba(0,0,0,0.05) 4px
+                );
+            background-size: 40px 40px, 60px 60px;
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+
+        
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatParticle 15s infinite linear;
+        }
+        
+        .particle:nth-child(odd) {
+            background: rgba(128,128,128,0.15);
+            animation-duration: 20s;
+            animation-direction: reverse;
+        }
+        
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Energy waves */
+        .energy-wave {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: energyPulse 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        .energy-wave:nth-child(2) { animation-delay: -2s; }
+        .energy-wave:nth-child(3) { animation-delay: -4s; }
+        .energy-wave:nth-child(4) { animation-delay: -6s; }
+        
+        @keyframes energyPulse {
+            0%, 100% {
+                transform: scale(0.5) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.5) rotate(180deg);
+                opacity: 0.3;
+            }
+        }
+        
+        /* Content wrapper */
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Ultra urban CRISIS title */
+        .mega-crisis-title {
+            position: relative;
+            color: #fff;
+            font-size: clamp(4rem, 15vw, 12rem);
+            font-weight: 400;
+            text-transform: uppercase;
+            font-family: 'Black Ops One', cursive;
+            letter-spacing: 0.2em;
+            animation: megaGlitchSkew 3s infinite linear alternate-reverse;
+            text-shadow: 
+                0 0 30px rgba(255,255,255,0.8),
+                0 0 60px rgba(255,255,255,0.4),
+                4px 4px 0px rgba(0,0,0,1),
+                8px 8px 0px rgba(128,128,128,0.8),
+                12px 12px 0px rgba(64,64,64,0.6),
+                16px 16px 0px rgba(32,32,32,0.4);
+            transform-style: preserve-3d;
+        }
+        
+        .mega-crisis-title::before,
+        .mega-crisis-title::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .mega-crisis-title::before {
+            animation: megaGlitchAnim 0.3s infinite linear alternate-reverse;
+            color: #666;
+            z-index: -1;
+            text-shadow: 2px 2px 0px rgba(102,102,102,0.8);
+        }
+        
+        .mega-crisis-title::after {
+            animation: megaGlitchAnim2 0.3s infinite linear alternate-reverse;
+            color: #000;
+            z-index: -2;
+            text-shadow: 4px 4px 0px rgba(0,0,0,0.9);
+        }
+        
+        @keyframes megaGlitchAnim {
+            0% { clip: rect(42px, 9999px, 44px, 0); transform: skew(0.8deg) rotateX(5deg); }
+            10% { clip: rect(12px, 9999px, 59px, 0); transform: skew(1.2deg) rotateX(-3deg); }
+            20% { clip: rect(48px, 9999px, 29px, 0); transform: skew(0.5deg) rotateX(2deg); }
+            30% { clip: rect(42px, 9999px, 73px, 0); transform: skew(0.9deg) rotateX(-4deg); }
+            40% { clip: rect(63px, 9999px, 27px, 0); transform: skew(0.6deg) rotateX(3deg); }
+            50% { clip: rect(34px, 9999px, 55px, 0); transform: skew(1.1deg) rotateX(-2deg); }
+            60% { clip: rect(86px, 9999px, 73px, 0); transform: skew(0.3deg) rotateX(4deg); }
+            70% { clip: rect(20px, 9999px, 20px, 0); transform: skew(1.4deg) rotateX(-5deg); }
+            80% { clip: rect(26px, 9999px, 60px, 0); transform: skew(0.2deg) rotateX(1deg); }
+            90% { clip: rect(25px, 9999px, 66px, 0); transform: skew(0.7deg) rotateX(-3deg); }
+            100% { clip: rect(57px, 9999px, 98px, 0); transform: skew(0.4deg) rotateX(2deg); }
+        }
+        
+        @keyframes megaGlitchAnim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); transform: skew(0.3deg) rotateY(2deg); }
+            10% { clip: rect(52px, 9999px, 74px, 0); transform: skew(0.9deg) rotateY(-4deg); }
+            20% { clip: rect(79px, 9999px, 85px, 0); transform: skew(1.2deg) rotateY(3deg); }
+            30% { clip: rect(75px, 9999px, 5px, 0); transform: skew(0.1deg) rotateY(-1deg); }
+            40% { clip: rect(67px, 9999px, 61px, 0); transform: skew(0.6deg) rotateY(5deg); }
+            50% { clip: rect(14px, 9999px, 79px, 0); transform: skew(1.0deg) rotateY(-3deg); }
+            60% { clip: rect(1px, 9999px, 66px, 0); transform: skew(0.4deg) rotateY(2deg); }
+            70% { clip: rect(86px, 9999px, 30px, 0); transform: skew(1.3deg) rotateY(-4deg); }
+            80% { clip: rect(23px, 9999px, 98px, 0); transform: skew(0.2deg) rotateY(1deg); }
+            90% { clip: rect(85px, 9999px, 72px, 0); transform: skew(0.8deg) rotateY(-2deg); }
+            100% { clip: rect(71px, 9999px, 75px, 0); transform: skew(0.5deg) rotateY(3deg); }
+        }
+        
+        @keyframes megaGlitchSkew {
+            0% { transform: skew(1.5deg) rotateZ(0.5deg) scale(1); }
+            20% { transform: skew(-0.8deg) rotateZ(-0.3deg) scale(1.02); }
+            40% { transform: skew(0.2deg) rotateZ(0.1deg) scale(0.98); }
+            60% { transform: skew(0.9deg) rotateZ(0.4deg) scale(1.01); }
+            80% { transform: skew(-1.2deg) rotateZ(-0.6deg) scale(0.99); }
+            100% { transform: skew(0.7deg) rotateZ(0.2deg) scale(1); }
+        }
+        
+        /* Explosive entrance animations */
+        .explode-in {
+            opacity: 0;
+            transform: scale(0.3) rotate(-15deg) translateY(100px);
+            transition: all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .explode-in.visible {
+            opacity: 1;
+            transform: scale(1) rotate(0deg) translateY(0);
+        }
+        
+        .slide-bounce-left {
+            opacity: 0;
+            transform: translateX(-200px) rotate(-10deg) scale(0.8);
+            transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .slide-bounce-left.visible {
+            opacity: 1;
+            transform: translateX(0) rotate(0deg) scale(1);
+        }
+        
+        .slide-bounce-right {
+            opacity: 0;
+            transform: translateX(200px) rotate(10deg) scale(0.8);
+            transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .slide-bounce-right.visible {
+            opacity: 1;
+            transform: translateX(0) rotate(0deg) scale(1);
+        }
+        
+        .zoom-rotate-in {
+            opacity: 0;
+            transform: scale(0.1) rotate(180deg);
+            transition: all 1.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .zoom-rotate-in.visible {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+        
+        /* Letter by letter reveal */
+        .letter-reveal {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(50px) rotateX(90deg);
+            animation: letterDrop 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+        
+        @keyframes letterDrop {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) rotateX(90deg) scale(0.5);
+            }
+            50% {
+                opacity: 0.5;
+                transform: translateY(-10px) rotateX(45deg) scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg) scale(1);
+            }
+        }
+        
+        /* 3D hover effects */
+        .mega-hover-3d {
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform-style: preserve-3d;
+        }
+        
+        .mega-hover-3d:hover {
+            transform: 
+                translateY(-15px) 
+                rotateX(10deg) 
+                rotateY(5deg) 
+                scale(1.05);
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.5),
+                0 0 50px rgba(255,255,255,0.1),
+                inset 0 0 30px rgba(255,255,255,0.05);
+        }
+        
+        /* Pulsating elements */
+        .pulse-glow {
+            animation: pulseGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 
+                    0 0 20px rgba(255,255,255,0.2),
+                    inset 0 0 20px rgba(255,255,255,0.05);
+                transform: scale(1);
+            }
+            100% {
+                box-shadow: 
+                    0 0 40px rgba(255,255,255,0.4),
+                    inset 0 0 40px rgba(255,255,255,0.1);
+                transform: scale(1.02);
+            }
+        }
+        
+        /* Rotating elements */
+        .slow-rotate {
+            animation: slowRotate 20s linear infinite;
+        }
+        
+        @keyframes slowRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .reverse-rotate {
+            animation: reverseRotate 15s linear infinite;
+        }
+        
+        @keyframes reverseRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+        
+        /* Parallax elements */
+        .parallax-element {
+            transition: transform 0.1s ease-out;
+        }
+        
+        /* Clean borders with glow */
+        .glow-border {
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 0 20px rgba(255,255,255,0.1),
+                inset 0 0 20px rgba(255,255,255,0.05);
+        }
+        
+        /* Section spacing */
+        .section-spacing {
+            padding: 8rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .section-spacing {
+                padding: 5rem 0;
+            }
+        }
+        
+        /* Typography with effects */
+        .section-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            text-shadow: 
+                0 0 30px rgba(255,255,255,0.5),
+                4px 4px 0px rgba(0,0,0,1),
+                8px 8px 0px rgba(128,128,128,0.7),
+                12px 12px 0px rgba(64,64,64,0.5);
+        }
+        
+        .content-text {
+            font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+            line-height: 1.7;
+            color: #d4d4d8;
+        }
+        
+        /* Floating geometric shapes */
+        .floating-shape {
+            position: absolute;
+            pointer-events: none;
+            animation: floatShape 12s ease-in-out infinite;
+        }
+        
+        .floating-shape:nth-child(odd) {
+            animation-direction: reverse;
+            animation-duration: 15s;
+        }
+        
+        @keyframes floatShape {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-30px) rotate(90deg) scale(1.1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-60px) rotate(180deg) scale(0.9);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(-30px) rotate(270deg) scale(1.05);
+                opacity: 0.5;
+            }
+        }
+        
+        /* Interactive mouse effects */
+        .mouse-interactive {
+            transition: all 0.3s ease;
+        }
+        
+        /* Staggered animations */
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Ultra dynamic texture overlay -->
+    <div class="mega-texture"></div>
+    
+    <!-- Floating particles -->
+    <div class="particle" style="left: 10%; width: 4px; height: 4px; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 20%; width: 6px; height: 6px; animation-delay: 2s;"></div>
+    <div class="particle" style="left: 30%; width: 3px; height: 3px; animation-delay: 4s;"></div>
+    <div class="particle" style="left: 40%; width: 5px; height: 5px; animation-delay: 6s;"></div>
+    <div class="particle" style="left: 50%; width: 4px; height: 4px; animation-delay: 8s;"></div>
+    <div class="particle" style="left: 60%; width: 7px; height: 7px; animation-delay: 10s;"></div>
+    <div class="particle" style="left: 70%; width: 3px; height: 3px; animation-delay: 12s;"></div>
+    <div class="particle" style="left: 80%; width: 5px; height: 5px; animation-delay: 14s;"></div>
+    <div class="particle" style="left: 90%; width: 4px; height: 4px; animation-delay: 16s;"></div>
+    
+    <!-- Content wrapper -->
+    <div class="content-wrapper">
+        <!-- Navigation -->
+        <nav class="fixed w-full z-50 bg-black/95 backdrop-blur-sm border-b border-gray-600 pulse-glow">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <div class="urban-font text-3xl tracking-widest text-white font-black">CRISIS</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#historia" class="hover:text-gray-300 transition-all duration-300 font-bold tech-font hover:scale-110 text-lg tracking-wide">HISTORIA</a>
+                    <a href="#drops" class="hover:text-gray-300 transition-all duration-300 font-bold tech-font hover:scale-110 text-lg tracking-wide">DROPS</a>
+                    <a href="#contacto" class="hover:text-gray-300 transition-all duration-300 font-bold tech-font hover:scale-110 text-lg tracking-wide">CONTACTO</a>
+                </div>
+                <a href="https://instagram.com/crisis_pe" target="_blank" class="bg-white text-black px-6 py-2 font-bold hover:bg-gray-200 transition-all duration-300 hover:scale-105 mega-hover-3d">
+                    @CRISIS_PE
+                </a>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center section-spacing relative overflow-hidden">
+            <!-- Energy waves -->
+            <div class="energy-wave" style="top: -50%; left: -50%;"></div>
+            <div class="energy-wave" style="top: -50%; left: -50%;"></div>
+            <div class="energy-wave" style="top: -50%; left: -50%;"></div>
+            <div class="energy-wave" style="top: -50%; left: -50%;"></div>
+            
+            <!-- Floating geometric shapes -->
+            <div class="floating-shape top-20 left-10 w-32 h-32 border-4 border-white/20 slow-rotate"></div>
+            <div class="floating-shape bottom-20 right-10 w-24 h-24 bg-gray-600/30 reverse-rotate transform rotate-45"></div>
+            <div class="floating-shape top-1/3 right-1/4 text-9xl opacity-10 urban-font text-gray-500 slow-rotate">C</div>
+            <div class="floating-shape bottom-1/3 left-1/4 text-7xl opacity-10 urban-font text-gray-400 reverse-rotate">R</div>
+            <div class="floating-shape top-1/2 left-10 w-20 h-20 bg-gradient-to-br from-white/10 to-transparent transform rotate-12 slow-rotate"></div>
+            <div class="floating-shape bottom-1/4 right-1/3 w-16 h-16 border-2 border-gray-400/30 reverse-rotate"></div>
+            
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <div class="mega-crisis-title mb-12" data-text="CRISIS">CRISIS</div>
+                
+                <div class="max-w-4xl mx-auto mb-12 explode-in">
+                    <h2 class="text-3xl md:text-5xl font-black mb-6 aggressive-font tracking-wide" id="hero-subtitle">
+                        <span class="letter-reveal stagger-1">N</span>
+                        <span class="letter-reveal stagger-2">O</span>
+                        <span class="letter-reveal stagger-3"> </span>
+                        <span class="letter-reveal stagger-4">E</span>
+                        <span class="letter-reveal stagger-5">S</span>
+                        <span class="letter-reveal stagger-6"> </span>
+                        <span class="letter-reveal stagger-1">S</span>
+                        <span class="letter-reveal stagger-2">O</span>
+                        <span class="letter-reveal stagger-3">L</span>
+                        <span class="letter-reveal stagger-4">O</span>
+                        <span class="letter-reveal stagger-5"> </span>
+                        <span class="letter-reveal stagger-6">R</span>
+                        <span class="letter-reveal stagger-1">O</span>
+                        <span class="letter-reveal stagger-2">P</span>
+                        <span class="letter-reveal stagger-3">A</span>
+                        <span class="letter-reveal stagger-4">,</span>
+                        <br>
+                        <span class="letter-reveal stagger-5">E</span>
+                        <span class="letter-reveal stagger-6">S</span>
+                        <span class="letter-reveal stagger-1"> </span>
+                        <span class="letter-reveal stagger-2">U</span>
+                        <span class="letter-reveal stagger-3">N</span>
+                        <span class="letter-reveal stagger-4">A</span>
+                        <span class="letter-reveal stagger-5"> </span>
+                        <span class="letter-reveal stagger-6">D</span>
+                        <span class="letter-reveal stagger-1">E</span>
+                        <span class="letter-reveal stagger-2">C</span>
+                        <span class="letter-reveal stagger-3">L</span>
+                        <span class="letter-reveal stagger-4">A</span>
+                        <span class="letter-reveal stagger-5">R</span>
+                        <span class="letter-reveal stagger-6">A</span>
+                        <span class="letter-reveal stagger-1">C</span>
+                        <span class="letter-reveal stagger-2">I</span>
+                        <span class="letter-reveal stagger-3">Ó</span>
+                        <span class="letter-reveal stagger-4">N</span>
+                        <span class="letter-reveal stagger-5"> </span>
+                        <span class="letter-reveal stagger-6">U</span>
+                        <span class="letter-reveal stagger-1">R</span>
+                        <span class="letter-reveal stagger-2">B</span>
+                        <span class="letter-reveal stagger-3">A</span>
+                        <span class="letter-reveal stagger-4">N</span>
+                        <span class="letter-reveal stagger-5">A</span>
+                    </h2>
+                    <p class="content-text mb-8 zoom-rotate-in">
+                        Junior & Jheremi desde Lima creando streetwear auténtico
+                    </p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center explode-in">
+                    <button onclick="scrollToSection('historia')" class="bg-transparent border-2 border-white px-8 py-4 font-black text-lg mega-hover-3d glow-border pulse-glow aggressive-font tracking-wider">
+                        CONOCE LA HISTORIA
+                    </button>
+                    <button onclick="scrollToSection('drops')" class="bg-white text-black px-8 py-4 font-black text-lg mega-hover-3d aggressive-font tracking-wider">
+                        VER DROPS
+                    </button>
+                    <div class="bg-gray-800/80 border border-gray-400 px-6 py-3 text-gray-300 font-black pulse-glow aggressive-font tracking-wider">
+                        NBC SOLD OUT
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Historia Section -->
+        <section id="historia" class="section-spacing relative">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 explode-in">
+                    <h2 class="urban-font section-title text-white">LA HISTORIA</h2>
+                    <p class="text-2xl text-gray-300 max-w-3xl mx-auto aggressive-font font-bold tracking-wide">
+                        DESDE LAS CALLES DE LIMA HASTA CONVERTIRSE EN REVOLUCIÓN URBANA
+                    </p>
+                </div>
+                
+                <div class="max-w-6xl mx-auto space-y-24">
+                    <!-- Capítulo 1 -->
+                    <div class="grid lg:grid-cols-2 gap-16 items-center">
+                        <div class="slide-bounce-left">
+                            <div class="bg-gray-800/60 border border-gray-400 px-4 py-2 inline-block mb-6 text-gray-300 font-bold tech-font">
+                                01 / EL INICIO
+                            </div>
+                            <h3 class="street-font text-5xl mb-6 text-white tracking-wide">DOS AMIGOS, UNA VISIÓN</h3>
+                            <p class="content-text mb-8">
+                                Todo comenzó con <span class="text-white font-bold">Junior y Jheremi</span>, dos amigos con una idea clara: crear streetwear auténtico desde Perú. Sin mucho capital, pero con mucha pasión por la cultura urbana.
+                            </p>
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="bg-black/70 p-6 text-center glow-border pulse-glow mega-hover-3d">
+                                    <div class="text-3xl font-black text-white urban-font">2024</div>
+                                    <div class="text-gray-400 tech-font">FUNDACIÓN</div>
+                                </div>
+                                <div class="bg-gray-700/50 p-6 text-center glow-border mega-hover-3d">
+                                    <div class="text-3xl font-black text-white urban-font">LIMA</div>
+                                    <div class="text-gray-400 tech-font">ORIGEN</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-bounce-right">
+                            <div class="bg-black/80 p-12 text-center mega-hover-3d glow-border pulse-glow relative overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent slow-rotate"></div>
+                                <div class="relative z-10">
+                                    <div class="text-8xl mb-6">🤝</div>
+                                    <div class="text-2xl font-black mb-4 text-white urban-font">JUNIOR & JHEREMI</div>
+                                    <div class="text-gray-400 tech-font">Fundadores de Crisis</div>
+                                    <div class="mt-6 w-full h-1 bg-gradient-to-r from-white via-gray-500 to-black"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Capítulo 2 -->
+                    <div class="grid lg:grid-cols-2 gap-16 items-center">
+                        <div class="bg-white text-black p-12 text-center mega-hover-3d lg:order-2 slide-bounce-right relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-gray-200 to-white reverse-rotate opacity-50"></div>
+                            <div class="relative z-10">
+                                <div class="text-8xl mb-6">🧵</div>
+                                <div class="text-2xl font-black mb-2 urban-font">PROCESO</div>
+                                <div class="text-2xl font-black mb-4 urban-font">ARTESANAL</div>
+                                <div class="text-gray-700 tech-font">De la tela al estampado</div>
+                                <div class="mt-6 grid grid-cols-3 gap-2">
+                                    <div class="w-full h-2 bg-black"></div>
+                                    <div class="w-full h-2 bg-gray-500"></div>
+                                    <div class="w-full h-2 bg-black"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:order-1 slide-bounce-left">
+                            <div class="bg-gray-700/60 border border-gray-400 px-4 py-2 inline-block mb-6 text-gray-300 font-bold tech-font">
+                                02 / EL PROCESO
+                            </div>
+                            <h3 class="street-font text-5xl mb-6 text-white tracking-wide">HECHO A MANO</h3>
+                            <p class="content-text mb-8">
+                                Fuimos nosotros mismos a comprar cada metro de tela. Supervisamos la confección de cada pieza. Diseñamos y estampamos cada polo con nuestras propias manos.
+                            </p>
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-4 bg-black/50 p-4 glow-border mega-hover-3d mouse-interactive">
+                                    <div class="w-4 h-4 bg-white slow-rotate"></div>
+                                    <span class="font-bold tech-font">Selección personal de telas</span>
+                                </div>
+                                <div class="flex items-center space-x-4 bg-gray-800/50 p-4 glow-border mega-hover-3d mouse-interactive">
+                                    <div class="w-4 h-4 bg-gray-400 reverse-rotate"></div>
+                                    <span class="font-bold tech-font">Confección supervisada</span>
+                                </div>
+                                <div class="flex items-center space-x-4 bg-black/50 p-4 glow-border mega-hover-3d mouse-interactive">
+                                    <div class="w-4 h-4 bg-white slow-rotate"></div>
+                                    <span class="font-bold tech-font">Estampado original</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Capítulo 3 -->
+                    <div class="grid lg:grid-cols-2 gap-16 items-center">
+                        <div class="slide-bounce-left">
+                            <div class="bg-gray-600/60 border border-gray-300 px-4 py-2 inline-block mb-6 text-gray-200 font-bold tech-font">
+                                03 / PRIMER DROP
+                            </div>
+                            <h3 class="street-font text-5xl mb-6 text-white tracking-wide">NBC NACE</h3>
+                            <p class="content-text mb-8">
+                                <span class="text-white font-bold">"Negros Bien Chingones"</span> - nuestro primer drop que marcó el inicio de Crisis. Polos oversize que representan nuestra identidad urbana.
+                            </p>
+                            <div class="bg-gray-800/60 p-6 border-l-4 border-white glow-border pulse-glow">
+                                <div class="text-xl font-black text-white urban-font">"No es solo ropa, es una declaración"</div>
+                                <div class="text-gray-400 mt-2 font-bold tech-font">- Filosofía Crisis</div>
+                            </div>
+                        </div>
+                        <div class="slide-bounce-right">
+                            <div class="bg-black/80 p-12 text-center mega-hover-3d glow-border pulse-glow relative overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-br from-gray-600/20 to-transparent slow-rotate"></div>
+                                <div class="relative z-10">
+                                    <div class="w-40 h-40 mx-auto bg-gradient-to-br from-gray-600 to-black mb-6 flex items-center justify-center border-4 border-white/20 reverse-rotate">
+                                        <span class="text-6xl">👕</span>
+                                    </div>
+                                    <div class="text-2xl font-black mb-2 text-white urban-font">POLO NBC</div>
+                                    <div class="text-gray-400 mb-6 tech-font">Oversize / Boxy Fit</div>
+                                    <div class="bg-gray-700 text-white py-3 px-6 font-black pulse-glow tech-font">
+                                        SOLD OUT
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Drops Section -->
+        <section id="drops" class="section-spacing relative">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="urban-font section-title text-white">DROPS</h2>
+                    <p class="text-2xl text-gray-300 max-w-4xl mx-auto aggressive-font font-bold tracking-wide">
+                        CADA PIEZA ES UNA DECLARACIÓN CONTRA LO COMÚN
+                    </p>
+                </div>
+                
+                <!-- NBC Drop -->
+                <div class="max-w-6xl mx-auto mb-20">
+                    <div class="grid lg:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <div class="bg-black/80 p-12 glow-border relative">
+                                <div class="absolute -top-3 -right-3 bg-gray-700 text-white px-4 py-2 font-black text-sm tech-font">
+                                    SOLD OUT
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-80 h-80 mx-auto bg-gradient-to-br from-gray-700 to-black mb-8 flex items-center justify-center border-4 border-white/20">
+                                        <span class="text-8xl">👕</span>
+                                    </div>
+                                    <div class="text-4xl font-black mb-4 text-white street-font">POLO NBC</div>
+                                    <div class="text-gray-400 text-xl mb-6 font-bold tech-font">NEGROS BIEN CHINGONES</div>
+                                    <div class="text-5xl font-black mb-8 text-white modern-font">S/. 45</div>
+                                    <button class="w-full bg-gray-700 text-white py-4 font-black text-xl tech-font hover:bg-gray-600 transition-colors duration-300">
+                                        AGOTADO
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="bg-white/10 border border-white/20 px-4 py-2 inline-block mb-6 text-white font-bold tech-font">
+                                PRIMER DROP
+                            </div>
+                            <h3 class="street-font text-6xl mb-8 text-white">NBC REVOLUTION</h3>
+                            <p class="content-text mb-10">
+                                Nuestro primer statement al mundo streetwear peruano. Cada polo NBC representa la <span class="text-white font-bold">autenticidad de las calles limeñas</span> y la rebeldía de una nueva generación.
+                            </p>
+                            
+                            <div class="grid grid-cols-2 gap-6 mb-10">
+                                <div class="bg-black/70 p-6 text-center glow-border">
+                                    <div class="text-3xl font-black text-white street-font">OVERSIZE</div>
+                                    <div class="text-gray-400 tech-font">Corte perfecto</div>
+                                </div>
+                                <div class="bg-gray-700/50 p-6 text-center glow-border">
+                                    <div class="text-3xl font-black text-white street-font">100%</div>
+                                    <div class="text-gray-400 tech-font">Algodón premium</div>
+                                </div>
+                                <div class="bg-gray-800/70 p-6 text-center glow-border">
+                                    <div class="text-3xl font-black text-white street-font">ÚNICO</div>
+                                    <div class="text-gray-300 tech-font">Diseño original</div>
+                                </div>
+                                <div class="bg-black/50 p-6 text-center glow-border">
+                                    <div class="text-3xl font-black text-white street-font">LIMA</div>
+                                    <div class="text-gray-400 tech-font">Hecho en Perú</div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-700/60 p-8 border-l-4 border-white glow-border">
+                                <div class="text-gray-300 font-bold mb-2 tech-font">PRÓXIMO RESTOCK</div>
+                                <div class="text-xl font-black text-white modern-font">Suscríbete para ser el primero</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coming Soon -->
+                <div class="text-center">
+                    <div class="bg-black/80 p-6 mb-12 inline-block glow-border">
+                        <h3 class="street-font text-5xl text-white">PRÓXIMO DROP</h3>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+                        <div class="bg-black/80 p-8 glow-border hover:bg-black/90 transition-colors duration-300">
+                            <div class="text-6xl mb-6">🩳</div>
+                            <h4 class="text-2xl font-black mb-4 text-white street-font">SHORTS</h4>
+                            <p class="text-gray-400 tech-font">Colección verano 2024</p>
+                            <div class="mt-6 w-full h-2 bg-gradient-to-r from-white via-gray-500 to-black"></div>
+                        </div>
+                        <div class="bg-gray-900/80 p-8 glow-border hover:bg-gray-900/90 transition-colors duration-300">
+                            <div class="text-6xl mb-6">⛓️</div>
+                            <h4 class="text-2xl font-black mb-4 text-white street-font">JOYERÍA</h4>
+                            <p class="text-gray-400 tech-font">Accesorios urbanos</p>
+                            <div class="mt-6 w-full h-2 bg-gradient-to-r from-black via-gray-400 to-white"></div>
+                        </div>
+                        <div class="bg-black/80 p-8 glow-border hover:bg-black/90 transition-colors duration-300">
+                            <div class="text-6xl mb-6">👕</div>
+                            <h4 class="text-2xl font-black mb-4 text-white street-font">NUEVOS POLOS</h4>
+                            <p class="text-gray-400 tech-font">Diseños exclusivos</p>
+                            <div class="mt-6 w-full h-2 bg-gradient-to-r from-gray-600 via-white to-gray-800"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter -->
+                    <div class="bg-black/80 p-12 max-w-2xl mx-auto glow-border">
+                        <h4 class="street-font text-4xl mb-6 text-white">ÚNETE A LA REVOLUCIÓN</h4>
+                        <p class="content-text mb-8 tech-font">Sé el primero en saber de nuevos drops</p>
+                        <div class="space-y-6">
+                            <input type="email" placeholder="tu@email.com" class="w-full px-6 py-4 bg-black/70 border border-white/20 text-white placeholder-gray-400 focus:border-white transition-all duration-300 tech-font">
+                            <button class="w-full bg-white text-black py-4 font-black text-xl hover:bg-gray-200 transition-colors duration-300 tech-font">
+                                UNIRSE A CRISIS
+                            </button>
+                        </div>
+                        <p class="text-gray-500 mt-4 tech-font">
+                            Solo contenido de calidad, nada de spam
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto" class="section-spacing">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 explode-in">
+                    <h2 class="urban-font section-title text-white">CONTACTO</h2>
+                    <p class="text-2xl text-gray-300 tech-font">Conecta con Crisis</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <a href="https://instagram.com/crisis_pe" target="_blank" class="bg-black/80 p-10 mega-hover-3d glow-border pulse-glow block text-center zoom-rotate-in stagger-1 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent slow-rotate"></div>
+                        <div class="relative z-10">
+                            <div class="text-5xl mb-4">📱</div>
+                            <h3 class="text-xl font-bold mb-2 urban-font">INSTAGRAM</h3>
+                            <p class="text-gray-300 tech-font">@crisis_pe</p>
+                            <div class="mt-4 text-sm text-gray-400 tech-font">Síguenos para contenido diario</div>
+                        </div>
+                    </a>
+                    
+                    <div class="bg-white text-black p-10 text-center mega-hover-3d zoom-rotate-in stagger-2 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-gray-200 to-white reverse-rotate opacity-50"></div>
+                        <div class="relative z-10">
+                            <div class="text-5xl mb-4">📧</div>
+                            <h3 class="text-xl font-bold mb-2 urban-font">EMAIL</h3>
+                            <p class="text-gray-800 tech-font">contacto@crisispe.com</p>
+                            <div class="mt-4 text-sm text-gray-600 tech-font">Para colaboraciones</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800/80 p-10 glow-border text-center mega-hover-3d zoom-rotate-in stagger-3 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-gray-600/10 to-transparent slow-rotate"></div>
+                        <div class="relative z-10">
+                            <div class="text-5xl mb-4">🇵🇪</div>
+                            <h3 class="text-xl font-bold mb-2 urban-font">UBICACIÓN</h3>
+                            <p class="text-gray-300 tech-font">Lima, Perú</p>
+                            <div class="mt-4 text-sm text-gray-400 tech-font">Streetwear desde las calles</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black/95 py-12 border-t border-gray-700 pulse-glow">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <div class="urban-font text-4xl mb-6 text-white font-black tracking-widest">CRISIS</div>
+                    <div class="grid md:grid-cols-3 gap-8 mb-8 max-w-2xl mx-auto">
+                        <div>
+                            <h4 class="font-bold mb-2 urban-font">LA MARCA</h4>
+                            <p class="text-sm text-gray-400 tech-font">Streetwear auténtico</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2 urban-font">FUNDADORES</h4>
+                            <p class="text-sm text-gray-400 tech-font">Junior & Jheremi</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2 urban-font">ORIGEN</h4>
+                            <p class="text-sm text-gray-400 tech-font">Lima, Perú</p>
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-800 pt-8">
+                        <p class="text-gray-500 text-sm tech-font">
+                            © 2024 Crisis • Hecho en Lima, Perú • Streetwear auténtico
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Advanced scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animation elements
+        document.querySelectorAll('.explode-in, .slide-bounce-left, .slide-bounce-right, .zoom-rotate-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Letter reveal animation
+        setTimeout(() => {
+            document.querySelectorAll('.letter-reveal').forEach((letter, index) => {
+                setTimeout(() => {
+                    letter.style.animationDelay = `${index * 0.05}s`;
+                    letter.style.animationPlayState = 'running';
+                }, index * 50);
+            });
+        }, 1000);
+
+        // Mouse parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            document.querySelectorAll('.parallax-element').forEach(element => {
+                const speed = element.dataset.speed || 0.5;
+                const x = (mouseX - 0.5) * speed * 50;
+                const y = (mouseY - 0.5) * speed * 50;
+                element.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // Interactive mouse effects
+        document.querySelectorAll('.mouse-interactive').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                element.style.transform = 'scale(1.05) rotate(1deg)';
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                element.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+
+        // Newsletter subscription
+        document.querySelector('button[class*="UNIRSE A CRISIS"]').addEventListener('click', function() {
+            const email = document.querySelector('input[type="email"]').value;
+            if (email) {
+                // Add explosion effect
+                this.style.transform = 'scale(1.2)';
+                this.style.background = 'linear-gradient(45deg, #fff, #ccc)';
+                
+                setTimeout(() => {
+                    alert('¡BIENVENIDO A LA REVOLUCIÓN CRISIS!\nTe notificaremos cuando lleguen los nuevos drops.');
+                    document.querySelector('input[type="email"]').value = '';
+                    this.style.transform = 'scale(1)';
+                    this.style.background = 'white';
+                }, 200);
+            } else {
+                // Shake effect for empty email
+                this.style.animation = 'shake 0.5s ease-in-out';
+                setTimeout(() => {
+                    this.style.animation = '';
+                    alert('Ingresa tu email para unirte a la revolución');
+                }, 500);
+            }
+        });
+
+        // Navigation smooth scroll
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add shake animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Dynamic particle generation
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.width = (Math.random() * 5 + 2) + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 20000);
+        }
+
+        // Generate particles periodically
+        setInterval(createParticle, 3000);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'967e320897b1e9a2',t:'MTc1Mzk3NjQzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
