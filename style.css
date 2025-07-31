@@ -1,0 +1,419 @@
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden;
+            background: 
+                linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(255,255,255,0.02) 100px,
+                    rgba(255,255,255,0.02) 101px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(128,128,128,0.03) 100px,
+                    rgba(128,128,128,0.03) 101px
+                );
+            background-attachment: fixed;
+        }
+        
+        .urban-font { font-family: 'Black Ops One', cursive; }
+        .tech-font { font-family: 'Teko', sans-serif; }
+        .street-font { font-family: 'Russo One', sans-serif; }
+        .modern-font { font-family: 'Orbitron', monospace; }
+        .aggressive-font { font-family: 'Rajdhani', sans-serif; }
+        
+
+        
+        /* Urban static texture overlay */
+        .mega-texture {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255,255,255,0.015) 2px,
+                    rgba(255,255,255,0.015) 4px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0,0,0,0.05) 2px,
+                    rgba(0,0,0,0.05) 4px
+                );
+            background-size: 40px 40px, 60px 60px;
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+
+        
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatParticle 15s infinite linear;
+        }
+        
+        .particle:nth-child(odd) {
+            background: rgba(128,128,128,0.15);
+            animation-duration: 20s;
+            animation-direction: reverse;
+        }
+        
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Energy waves */
+        .energy-wave {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: energyPulse 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        .energy-wave:nth-child(2) { animation-delay: -2s; }
+        .energy-wave:nth-child(3) { animation-delay: -4s; }
+        .energy-wave:nth-child(4) { animation-delay: -6s; }
+        
+        @keyframes energyPulse {
+            0%, 100% {
+                transform: scale(0.5) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.5) rotate(180deg);
+                opacity: 0.3;
+            }
+        }
+        
+        /* Content wrapper */
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Ultra urban CRISIS title */
+        .mega-crisis-title {
+            position: relative;
+            color: #fff;
+            font-size: clamp(4rem, 15vw, 12rem);
+            font-weight: 400;
+            text-transform: uppercase;
+            font-family: 'Black Ops One', cursive;
+            letter-spacing: 0.2em;
+            animation: megaGlitchSkew 3s infinite linear alternate-reverse;
+            text-shadow: 
+                0 0 30px rgba(255,255,255,0.8),
+                0 0 60px rgba(255,255,255,0.4),
+                4px 4px 0px rgba(0,0,0,1),
+                8px 8px 0px rgba(128,128,128,0.8),
+                12px 12px 0px rgba(64,64,64,0.6),
+                16px 16px 0px rgba(32,32,32,0.4);
+            transform-style: preserve-3d;
+        }
+        
+        .mega-crisis-title::before,
+        .mega-crisis-title::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .mega-crisis-title::before {
+            animation: megaGlitchAnim 0.3s infinite linear alternate-reverse;
+            color: #666;
+            z-index: -1;
+            text-shadow: 2px 2px 0px rgba(102,102,102,0.8);
+        }
+        
+        .mega-crisis-title::after {
+            animation: megaGlitchAnim2 0.3s infinite linear alternate-reverse;
+            color: #000;
+            z-index: -2;
+            text-shadow: 4px 4px 0px rgba(0,0,0,0.9);
+        }
+        
+        @keyframes megaGlitchAnim {
+            0% { clip: rect(42px, 9999px, 44px, 0); transform: skew(0.8deg) rotateX(5deg); }
+            10% { clip: rect(12px, 9999px, 59px, 0); transform: skew(1.2deg) rotateX(-3deg); }
+            20% { clip: rect(48px, 9999px, 29px, 0); transform: skew(0.5deg) rotateX(2deg); }
+            30% { clip: rect(42px, 9999px, 73px, 0); transform: skew(0.9deg) rotateX(-4deg); }
+            40% { clip: rect(63px, 9999px, 27px, 0); transform: skew(0.6deg) rotateX(3deg); }
+            50% { clip: rect(34px, 9999px, 55px, 0); transform: skew(1.1deg) rotateX(-2deg); }
+            60% { clip: rect(86px, 9999px, 73px, 0); transform: skew(0.3deg) rotateX(4deg); }
+            70% { clip: rect(20px, 9999px, 20px, 0); transform: skew(1.4deg) rotateX(-5deg); }
+            80% { clip: rect(26px, 9999px, 60px, 0); transform: skew(0.2deg) rotateX(1deg); }
+            90% { clip: rect(25px, 9999px, 66px, 0); transform: skew(0.7deg) rotateX(-3deg); }
+            100% { clip: rect(57px, 9999px, 98px, 0); transform: skew(0.4deg) rotateX(2deg); }
+        }
+        
+        @keyframes megaGlitchAnim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); transform: skew(0.3deg) rotateY(2deg); }
+            10% { clip: rect(52px, 9999px, 74px, 0); transform: skew(0.9deg) rotateY(-4deg); }
+            20% { clip: rect(79px, 9999px, 85px, 0); transform: skew(1.2deg) rotateY(3deg); }
+            30% { clip: rect(75px, 9999px, 5px, 0); transform: skew(0.1deg) rotateY(-1deg); }
+            40% { clip: rect(67px, 9999px, 61px, 0); transform: skew(0.6deg) rotateY(5deg); }
+            50% { clip: rect(14px, 9999px, 79px, 0); transform: skew(1.0deg) rotateY(-3deg); }
+            60% { clip: rect(1px, 9999px, 66px, 0); transform: skew(0.4deg) rotateY(2deg); }
+            70% { clip: rect(86px, 9999px, 30px, 0); transform: skew(1.3deg) rotateY(-4deg); }
+            80% { clip: rect(23px, 9999px, 98px, 0); transform: skew(0.2deg) rotateY(1deg); }
+            90% { clip: rect(85px, 9999px, 72px, 0); transform: skew(0.8deg) rotateY(-2deg); }
+            100% { clip: rect(71px, 9999px, 75px, 0); transform: skew(0.5deg) rotateY(3deg); }
+        }
+        
+        @keyframes megaGlitchSkew {
+            0% { transform: skew(1.5deg) rotateZ(0.5deg) scale(1); }
+            20% { transform: skew(-0.8deg) rotateZ(-0.3deg) scale(1.02); }
+            40% { transform: skew(0.2deg) rotateZ(0.1deg) scale(0.98); }
+            60% { transform: skew(0.9deg) rotateZ(0.4deg) scale(1.01); }
+            80% { transform: skew(-1.2deg) rotateZ(-0.6deg) scale(0.99); }
+            100% { transform: skew(0.7deg) rotateZ(0.2deg) scale(1); }
+        }
+        
+        /* Explosive entrance animations */
+        .explode-in {
+            opacity: 0;
+            transform: scale(0.3) rotate(-15deg) translateY(100px);
+            transition: all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .explode-in.visible {
+            opacity: 1;
+            transform: scale(1) rotate(0deg) translateY(0);
+        }
+        
+        .slide-bounce-left {
+            opacity: 0;
+            transform: translateX(-200px) rotate(-10deg) scale(0.8);
+            transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .slide-bounce-left.visible {
+            opacity: 1;
+            transform: translateX(0) rotate(0deg) scale(1);
+        }
+        
+        .slide-bounce-right {
+            opacity: 0;
+            transform: translateX(200px) rotate(10deg) scale(0.8);
+            transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .slide-bounce-right.visible {
+            opacity: 1;
+            transform: translateX(0) rotate(0deg) scale(1);
+        }
+        
+        .zoom-rotate-in {
+            opacity: 0;
+            transform: scale(0.1) rotate(180deg);
+            transition: all 1.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .zoom-rotate-in.visible {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+        
+        /* Letter by letter reveal */
+        .letter-reveal {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(50px) rotateX(90deg);
+            animation: letterDrop 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+        
+        @keyframes letterDrop {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) rotateX(90deg) scale(0.5);
+            }
+            50% {
+                opacity: 0.5;
+                transform: translateY(-10px) rotateX(45deg) scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg) scale(1);
+            }
+        }
+        
+        /* 3D hover effects */
+        .mega-hover-3d {
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform-style: preserve-3d;
+        }
+        
+        .mega-hover-3d:hover {
+            transform: 
+                translateY(-15px) 
+                rotateX(10deg) 
+                rotateY(5deg) 
+                scale(1.05);
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.5),
+                0 0 50px rgba(255,255,255,0.1),
+                inset 0 0 30px rgba(255,255,255,0.05);
+        }
+        
+        /* Pulsating elements */
+        .pulse-glow {
+            animation: pulseGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 
+                    0 0 20px rgba(255,255,255,0.2),
+                    inset 0 0 20px rgba(255,255,255,0.05);
+                transform: scale(1);
+            }
+            100% {
+                box-shadow: 
+                    0 0 40px rgba(255,255,255,0.4),
+                    inset 0 0 40px rgba(255,255,255,0.1);
+                transform: scale(1.02);
+            }
+        }
+        
+        /* Rotating elements */
+        .slow-rotate {
+            animation: slowRotate 20s linear infinite;
+        }
+        
+        @keyframes slowRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .reverse-rotate {
+            animation: reverseRotate 15s linear infinite;
+        }
+        
+        @keyframes reverseRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+        
+        /* Parallax elements */
+        .parallax-element {
+            transition: transform 0.1s ease-out;
+        }
+        
+        /* Clean borders with glow */
+        .glow-border {
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 0 20px rgba(255,255,255,0.1),
+                inset 0 0 20px rgba(255,255,255,0.05);
+        }
+        
+        /* Section spacing */
+        .section-spacing {
+            padding: 8rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .section-spacing {
+                padding: 5rem 0;
+            }
+        }
+        
+        /* Typography with effects */
+        .section-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            text-shadow: 
+                0 0 30px rgba(255,255,255,0.5),
+                4px 4px 0px rgba(0,0,0,1),
+                8px 8px 0px rgba(128,128,128,0.7),
+                12px 12px 0px rgba(64,64,64,0.5);
+        }
+        
+        .content-text {
+            font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+            line-height: 1.7;
+            color: #d4d4d8;
+        }
+        
+        /* Floating geometric shapes */
+        .floating-shape {
+            position: absolute;
+            pointer-events: none;
+            animation: floatShape 12s ease-in-out infinite;
+        }
+        
+        .floating-shape:nth-child(odd) {
+            animation-direction: reverse;
+            animation-duration: 15s;
+        }
+        
+        @keyframes floatShape {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-30px) rotate(90deg) scale(1.1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-60px) rotate(180deg) scale(0.9);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(-30px) rotate(270deg) scale(1.05);
+                opacity: 0.5;
+            }
+        }
+        
+        /* Interactive mouse effects */
+        .mouse-interactive {
+            transition: all 0.3s ease;
+        }
+        
+        /* Staggered animations */
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
