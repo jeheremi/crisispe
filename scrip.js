@@ -464,8 +464,31 @@
             window.addEventListener('scroll', requestParallaxTick, { passive: true });
         }
         
-
-      
+        // Enhanced mouse movement parallax
+        function initializeMouseParallax() {
+            const footer = document.getElementById('footer');
+            
+            footer.addEventListener('mouseenter', () => {
+                isMouseInFooter = true;
+            });
+            
+            footer.addEventListener('mouseleave', () => {
+                isMouseInFooter = false;
+                mouseX = 0.5;
+                mouseY = 0.5;
+            });
+            
+            footer.addEventListener('mousemove', (e) => {
+                const rect = footer.getBoundingClientRect();
+                mouseX = (e.clientX - rect.left) / rect.width;
+                mouseY = (e.clientY - rect.top) / rect.height;
+            });
+        }
+        
+        // Easing function for smoother animations
+        function easeInOutCubic(t) {
+            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        }
         
         // Observe elements after a delay to ensure DOM is ready
         setTimeout(() => {
