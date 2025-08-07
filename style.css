@@ -1,23 +1,26 @@
-body { 
+        body { 
             font-family: 'Inter', sans-serif; 
             overflow-x: hidden;
-            background: 
-                linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%),
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 100px,
-                    rgba(255,255,255,0.02) 100px,
-                    rgba(255,255,255,0.02) 101px
-                ),
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 100px,
-                    rgba(128,128,128,0.03) 100px,
-                    rgba(128,128,128,0.03) 101px
-                );
-            background-attachment: fixed;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+            background-attachment: scroll;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Simplified background for better performance */
+        @media (min-width: 768px) {
+            body {
+                background: 
+                    linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%),
+                    repeating-linear-gradient(
+                        90deg,
+                        transparent,
+                        transparent 100px,
+                        rgba(255,255,255,0.01) 100px,
+                        rgba(255,255,255,0.01) 101px
+                    );
+                background-attachment: fixed;
+            }
         }
         
         .urban-font { font-family: 'Black Ops One', cursive; }
@@ -26,127 +29,86 @@ body {
         .modern-font { font-family: 'Orbitron', monospace; }
         .aggressive-font { font-family: 'Rajdhani', sans-serif; }
         
-        /* Loading Screen */
+        /* Optimized Loading Screen - Mobile First */
         .loading-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            height: 100vh;
+            height: 100dvh;
+            background: #0a0a0a;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 2s ease-out, transform 2s ease-out;
+            transition: opacity 1s ease-out;
+            padding: 1rem;
         }
         
         .loading-screen.fade-out {
             opacity: 0;
-            transform: translateY(-50px);
             pointer-events: none;
         }
         
-        /* Enhanced loading spinner with multiple rings */
+        /* Simplified loading spinner for better performance */
         .loading-spinner {
             position: relative;
-            width: 80px;
-            height: 80px;
-            margin-bottom: 3rem;
-        }
-        
-        .loading-spinner::before,
-        .loading-spinner::after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-        }
-        
-        .loading-spinner::before {
-            width: 80px;
-            height: 80px;
+            width: clamp(60px, 15vw, 80px);
+            height: clamp(60px, 15vw, 80px);
+            margin-bottom: 2rem;
             border: 2px solid rgba(255,255,255,0.1);
             border-top: 2px solid rgba(255,255,255,0.8);
-            animation: loadingSpin 2s linear infinite;
-        }
-        
-        .loading-spinner::after {
-            width: 60px;
-            height: 60px;
-            top: 10px;
-            left: 10px;
-            border: 2px solid rgba(255,255,255,0.05);
-            border-bottom: 2px solid rgba(255,255,255,0.6);
-            animation: loadingSpin 1.5s linear infinite reverse;
+            border-radius: 50%;
+            animation: loadingSpin 1.5s linear infinite;
         }
         
         @keyframes loadingSpin {
-            0% { 
-                transform: rotate(0deg);
-                filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
-            }
-            25% { 
-                filter: drop-shadow(0 0 15px rgba(255,255,255,0.5));
-            }
-            50% { 
-                filter: drop-shadow(0 0 20px rgba(255,255,255,0.4));
-            }
-            75% { 
-                filter: drop-shadow(0 0 15px rgba(255,255,255,0.6));
-            }
-            100% { 
-                transform: rotate(360deg);
-                filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
-            }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
-        /* Enhanced loading text with smooth transitions */
+        /* Mobile-optimized loading text */
         .loading-text {
             font-family: 'Inter', sans-serif;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 4vw, 1.1rem);
             font-weight: 400;
             color: rgba(255,255,255,0.9);
-            letter-spacing: 0.15em;
+            letter-spacing: 0.1em;
             margin-bottom: 1.5rem;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: loadingTextPulse 3s ease-in-out infinite;
-            text-shadow: 0 0 20px rgba(255,255,255,0.3);
+            text-align: center;
+            animation: loadingTextPulse 2s ease-in-out infinite;
         }
         
         @keyframes loadingTextPulse {
-            0%, 100% { 
-                opacity: 0.7;
-                transform: translateY(0px);
-                text-shadow: 0 0 20px rgba(255,255,255,0.3);
-            }
-            50% { 
-                opacity: 1;
-                transform: translateY(-2px);
-                text-shadow: 0 0 30px rgba(255,255,255,0.5);
-            }
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
         }
         
-        /* Enhanced loading percentage with glow effect */
+        /* Mobile-optimized loading percentage */
         .loading-percentage {
             font-family: 'Inter', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: rgba(255,255,255,0.8);
-            letter-spacing: 0.1em;
-            transition: all 0.3s ease-out;
-            text-shadow: 0 0 15px rgba(255,255,255,0.4);
-            animation: percentageGlow 2s ease-in-out infinite alternate;
+            font-size: clamp(1rem, 5vw, 1.2rem);
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            letter-spacing: 0.05em;
+            text-align: center;
         }
         
-        @keyframes percentageGlow {
-            0% { 
-                text-shadow: 0 0 15px rgba(255,255,255,0.4);
-                transform: scale(1);
+        /* Mobile specific adjustments */
+        @media (max-width: 480px) {
+            .loading-screen {
+                padding: 0.5rem;
             }
-            100% { 
-                text-shadow: 0 0 25px rgba(255,255,255,0.6);
-                transform: scale(1.05);
+            
+            .loading-spinner {
+                margin-bottom: 1.5rem;
+            }
+            
+            .loading-text {
+                margin-bottom: 1rem;
+                line-height: 1.3;
             }
         }
         
@@ -164,33 +126,48 @@ body {
             opacity: 1;
         }
         
-        /* Initial CRISIS display - Full screen */
+        /* Initial CRISIS display - Mobile optimized */
         .crisis-initial-container {
             position: relative;
             height: 100vh;
+            height: 100dvh; /* Dynamic viewport height for mobile */
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            padding: 0 1rem;
+            padding: 0 0.5rem;
         }
         
         .crisis-word {
-            font-size: clamp(4rem, 15vw, 15rem);
+            font-size: clamp(3rem, 18vw, 15rem);
             font-weight: 400;
             font-family: 'Black Ops One', cursive;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
             color: #fff;
             text-shadow: 
-                0 0 30px rgba(255,255,255,0.8),
-                3px 3px 0px rgba(0,0,0,1),
-                6px 6px 0px rgba(128,128,128,0.8);
+                0 0 20px rgba(255,255,255,0.8),
+                2px 2px 0px rgba(0,0,0,1),
+                4px 4px 0px rgba(128,128,128,0.8);
             transform-origin: center;
             opacity: 1;
             will-change: transform, opacity, filter;
             backface-visibility: hidden;
             perspective: 1000px;
             position: relative;
+            text-align: center;
+            line-height: 0.9;
+        }
+        
+        /* Mobile specific adjustments */
+        @media (max-width: 480px) {
+            .crisis-word {
+                font-size: clamp(2.5rem, 20vw, 8rem);
+                letter-spacing: 0.02em;
+                text-shadow: 
+                    0 0 15px rgba(255,255,255,0.8),
+                    1px 1px 0px rgba(0,0,0,1),
+                    2px 2px 0px rgba(128,128,128,0.8);
+            }
         }
         
         /* Efecto simplificado para mejor rendimiento */
@@ -302,15 +279,16 @@ body {
             }
         }
         
-        /* Hero content section - Initially hidden */
+        /* Hero content section - Mobile optimized */
         .hero-content-section {
             position: relative;
             height: 100vh;
+            height: 100dvh; /* Dynamic viewport height for mobile */
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            padding: 0 1rem;
+            padding: 1rem 0.5rem;
             opacity: 0;
             transform: translateY(100vh);
             transition: all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -323,27 +301,64 @@ body {
         
         .hero-subtitle-container {
             text-align: center;
-            width: 90%;
+            width: 100%;
             max-width: 1200px;
             padding: 0 1rem;
         }
         
-        /* Mobile subtitle adjustments */
+        /* Enhanced mobile subtitle adjustments - Full width optimization */
         @media (max-width: 768px) {
             .hero-subtitle-container {
-                width: 95%;
-                padding: 0 0.5rem;
+                width: 100%;
+                padding: 0;
+                margin: 0;
             }
             
             .hero-subtitle-container h2 {
-                font-size: clamp(1.5rem, 6vw, 3rem) !important;
-                line-height: 1.2;
-                margin-bottom: 1.5rem !important;
+                font-size: clamp(1.8rem, 7vw, 3rem) !important;
+                line-height: 1.1;
+                margin-bottom: 2rem !important;
+                word-spacing: 0.1em;
+                padding: 0 1rem;
+                text-align: center;
+                width: 100%;
             }
             
             .hero-subtitle-container p {
-                font-size: clamp(1rem, 4vw, 1.25rem) !important;
+                font-size: clamp(1.1rem, 4.5vw, 1.4rem) !important;
+                margin-bottom: 2.5rem !important;
+                line-height: 1.4;
+                padding: 0 1rem;
+                text-align: center;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content-section {
+                padding: 1rem 0;
+                width: 100%;
+            }
+            
+            .hero-subtitle-container {
+                padding: 0;
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .hero-subtitle-container h2 {
+                font-size: clamp(1.6rem, 8vw, 2.5rem) !important;
+                line-height: 1.05;
+                margin-bottom: 1.5rem !important;
+                padding: 0 0.5rem;
+                width: 100%;
+            }
+            
+            .hero-subtitle-container p {
+                font-size: clamp(1rem, 5vw, 1.2rem) !important;
                 margin-bottom: 2rem !important;
+                padding: 0 0.5rem;
+                width: 100%;
             }
         }
         
@@ -370,32 +385,33 @@ body {
             }
         }
         
-        /* Urban static texture overlay */
+        /* Simplified texture overlay for better performance */
         .mega-texture {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                repeating-linear-gradient(
-                    45deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(255,255,255,0.015) 2px,
-                    rgba(255,255,255,0.015) 4px
-                ),
-                repeating-linear-gradient(
-                    -45deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(0,0,0,0.05) 2px,
-                    rgba(0,0,0,0.05) 4px
-                );
-            background-size: 40px 40px, 60px 60px;
-            opacity: 0.4;
+            background: rgba(255,255,255,0.005);
+            opacity: 0.3;
             pointer-events: none;
             z-index: 1;
+            display: none; /* Hidden on mobile for performance */
+        }
+        
+        @media (min-width: 768px) {
+            .mega-texture {
+                display: block;
+                background-image: 
+                    repeating-linear-gradient(
+                        45deg,
+                        transparent,
+                        transparent 4px,
+                        rgba(255,255,255,0.01) 4px,
+                        rgba(255,255,255,0.01) 8px
+                    );
+                background-size: 80px 80px;
+            }
         }
         
         /* Content wrapper */
@@ -449,56 +465,61 @@ body {
             transform: scale(1) rotate(0deg);
         }
         
-        /* 3D hover effects - Touch-friendly */
+        /* Optimized hover effects - Mobile-first approach */
         .mega-hover-3d {
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            transform-style: preserve-3d;
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+            will-change: transform;
         }
         
-        .mega-hover-3d:hover {
-            transform: 
-                translateY(-15px) 
-                rotateX(10deg) 
-                rotateY(5deg) 
-                scale(1.05);
-            box-shadow: 
-                0 25px 50px rgba(0,0,0,0.5),
-                0 0 50px rgba(255,255,255,0.1),
-                inset 0 0 30px rgba(255,255,255,0.05);
+        /* Simplified mobile/touch behavior */
+        .mega-hover-3d:active {
+            transform: translateY(-2px) scale(0.98);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
         
-        /* Touch device optimizations */
-        @media (hover: none) and (pointer: coarse) {
+        /* Desktop hover effects - only when supported */
+        @media (hover: hover) and (pointer: fine) {
             .mega-hover-3d:hover {
-                transform: translateY(-5px) scale(1.02);
+                transform: translateY(-8px) scale(1.02);
                 box-shadow: 
-                    0 10px 25px rgba(0,0,0,0.3),
-                    0 0 25px rgba(255,255,255,0.1);
+                    0 15px 30px rgba(0,0,0,0.3),
+                    0 0 20px rgba(255,255,255,0.1);
+            }
+        }
+        
+        /* Disable complex animations on low-end devices */
+        @media (max-width: 480px) {
+            .mega-hover-3d {
+                transition: transform 0.1s ease-out;
             }
             
             .mega-hover-3d:active {
-                transform: translateY(-2px) scale(0.98);
-                transition: all 0.1s ease;
+                transform: scale(0.98);
+                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
             }
         }
         
-        /* Pulsating elements */
+        /* Simplified pulsating elements */
         .pulse-glow {
-            animation: pulseGlow 3s ease-in-out infinite alternate;
+            animation: pulseGlow 4s ease-in-out infinite alternate;
         }
         
         @keyframes pulseGlow {
             0% {
-                box-shadow: 
-                    0 0 20px rgba(255,255,255,0.2),
-                    inset 0 0 20px rgba(255,255,255,0.05);
+                box-shadow: 0 0 15px rgba(255,255,255,0.15);
                 transform: scale(1);
             }
             100% {
-                box-shadow: 
-                    0 0 40px rgba(255,255,255,0.4),
-                    inset 0 0 40px rgba(255,255,255,0.1);
-                transform: scale(1.02);
+                box-shadow: 0 0 25px rgba(255,255,255,0.25);
+                transform: scale(1.01);
+            }
+        }
+        
+        /* Disable pulse on mobile for performance */
+        @media (max-width: 768px) {
+            .pulse-glow {
+                animation: none;
+                box-shadow: 0 0 10px rgba(255,255,255,0.1);
             }
         }
         
@@ -511,65 +532,92 @@ body {
                 inset 0 0 20px rgba(255,255,255,0.05);
         }
         
-        /* Section spacing - Enhanced Mobile */
+        /* Section spacing - Mobile-first responsive */
         .section-spacing {
-            padding: 6rem 0;
+            padding: 3rem 0;
         }
         
-        @media (max-width: 1024px) {
+        @media (min-width: 480px) {
             .section-spacing {
                 padding: 4rem 0;
             }
         }
         
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             .section-spacing {
-                padding: 3rem 0;
+                padding: 5rem 0;
             }
         }
         
-        @media (max-width: 480px) {
+        @media (min-width: 1024px) {
             .section-spacing {
-                padding: 2rem 0;
+                padding: 6rem 0;
             }
         }
         
-        /* Typography with effects - Enhanced Mobile */
+        /* Extra small mobile devices */
+        @media (max-width: 360px) {
+            .section-spacing {
+                padding: 2.5rem 0;
+            }
+        }
+        
+        /* Typography with effects - Mobile-first responsive */
         .section-title {
-            font-size: clamp(2.5rem, 8vw, 6rem);
-            line-height: 0.95;
+            font-size: clamp(2rem, 10vw, 6rem);
+            line-height: 0.9;
             margin-bottom: 1.5rem;
             font-weight: 900;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.02em;
             text-shadow: 
-                0 0 20px rgba(255,255,255,0.5),
-                2px 2px 0px rgba(0,0,0,1),
-                4px 4px 0px rgba(128,128,128,0.7),
-                6px 6px 0px rgba(64,64,64,0.5);
+                0 0 15px rgba(255,255,255,0.5),
+                1px 1px 0px rgba(0,0,0,1),
+                2px 2px 0px rgba(128,128,128,0.7),
+                3px 3px 0px rgba(64,64,64,0.5);
+            word-break: break-word;
+            hyphens: auto;
         }
         
         .content-text {
-            font-size: clamp(1rem, 2.5vw, 1.25rem);
-            line-height: 1.6;
+            font-size: clamp(1rem, 4vw, 1.25rem);
+            line-height: 1.5;
             color: #d4d4d8;
+            word-break: break-word;
+            hyphens: auto;
         }
         
-        /* Mobile typography adjustments */
-        @media (max-width: 768px) {
+        /* Enhanced mobile typography */
+        @media (min-width: 768px) {
             .section-title {
-                font-size: clamp(2rem, 10vw, 4rem);
-                line-height: 1;
-                margin-bottom: 1rem;
-                letter-spacing: 0.02em;
+                font-size: clamp(3rem, 8vw, 6rem);
+                line-height: 0.95;
+                margin-bottom: 2rem;
+                letter-spacing: 0.05em;
                 text-shadow: 
-                    0 0 15px rgba(255,255,255,0.5),
+                    0 0 20px rgba(255,255,255,0.5),
                     2px 2px 0px rgba(0,0,0,1),
-                    3px 3px 0px rgba(128,128,128,0.7);
+                    4px 4px 0px rgba(128,128,128,0.7),
+                    6px 6px 0px rgba(64,64,64,0.5);
             }
             
             .content-text {
-                font-size: clamp(0.9rem, 4vw, 1.1rem);
-                line-height: 1.5;
+                font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+                line-height: 1.6;
+            }
+        }
+        
+        /* Extra small devices */
+        @media (max-width: 360px) {
+            .section-title {
+                font-size: clamp(1.8rem, 12vw, 3rem);
+                line-height: 0.85;
+                margin-bottom: 1rem;
+                letter-spacing: 0.01em;
+            }
+            
+            .content-text {
+                font-size: clamp(0.9rem, 5vw, 1.1rem);
+                line-height: 1.4;
             }
         }
         
@@ -638,272 +686,105 @@ body {
             transform: scale(1) rotate(0deg);
         }
         
-        /* Enhanced Parallax Footer Styles */
+        /* Optimized Subtle Footer Parallax */
         .parallax-bg-1 {
             background: 
                 repeating-linear-gradient(
                     45deg,
                     transparent,
-                    transparent 15px,
-                    rgba(255,255,255,0.03) 15px,
-                    rgba(255,255,255,0.03) 30px
-                ),
-                repeating-linear-gradient(
-                    135deg,
-                    transparent,
-                    transparent 25px,
-                    rgba(128,128,128,0.02) 25px,
-                    rgba(128,128,128,0.02) 50px
+                    transparent 20px,
+                    rgba(255,255,255,0.02) 20px,
+                    rgba(255,255,255,0.02) 40px
                 );
-            animation: parallaxMove1 15s linear infinite, parallaxPulse1 8s ease-in-out infinite alternate;
+            opacity: 0.6;
         }
         
         .parallax-bg-2 {
             background: 
-                repeating-linear-gradient(
-                    -45deg,
-                    transparent,
-                    transparent 20px,
-                    rgba(255,255,255,0.04) 20px,
-                    rgba(255,255,255,0.04) 40px
-                ),
-                radial-gradient(ellipse at 30% 70%, rgba(128,128,128,0.06) 0%, transparent 70%);
-            animation: parallaxMove2 18s linear infinite reverse, parallaxWave 12s ease-in-out infinite;
+                radial-gradient(ellipse at 30% 70%, rgba(128,128,128,0.04) 0%, transparent 60%);
+            opacity: 0.4;
         }
         
         .parallax-bg-3 {
             background: 
-                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(128,128,128,0.12) 0%, transparent 60%),
-                radial-gradient(circle at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 80%),
-                linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.02) 50%, transparent 60%);
-            animation: parallaxFloat 25s ease-in-out infinite, parallaxRotate 35s linear infinite;
+                linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.01) 50%, transparent 60%);
+            opacity: 0.3;
         }
         
         .parallax-bg-4 {
             background: 
-                conic-gradient(from 0deg at 25% 25%, transparent 0deg, rgba(255,255,255,0.03) 90deg, transparent 180deg),
-                conic-gradient(from 180deg at 75% 75%, transparent 0deg, rgba(128,128,128,0.05) 90deg, transparent 180deg);
-            animation: parallaxSpin 40s linear infinite, parallaxBreath 6s ease-in-out infinite alternate;
+                radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 70%);
+            opacity: 0.5;
         }
         
-        /* Enhanced Keyframes */
-        @keyframes parallaxMove1 {
-            0% { transform: translateX(-80px) translateY(-40px) rotate(0deg); }
-            25% { transform: translateX(20px) translateY(-60px) rotate(90deg); }
-            50% { transform: translateX(80px) translateY(20px) rotate(180deg); }
-            75% { transform: translateX(-20px) translateY(60px) rotate(270deg); }
-            100% { transform: translateX(-80px) translateY(-40px) rotate(360deg); }
-        }
-        
-        @keyframes parallaxMove2 {
-            0% { transform: translateX(60px) translateY(30px) scale(1); }
-            33% { transform: translateX(-30px) translateY(-45px) scale(1.1); }
-            66% { transform: translateX(-60px) translateY(45px) scale(0.9); }
-            100% { transform: translateX(60px) translateY(30px) scale(1); }
-        }
-        
-        @keyframes parallaxFloat {
-            0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); }
-            20% { transform: translateY(-25px) scale(1.08) rotate(72deg); }
-            40% { transform: translateY(15px) scale(0.92) rotate(144deg); }
-            60% { transform: translateY(-15px) scale(1.05) rotate(216deg); }
-            80% { transform: translateY(25px) scale(0.95) rotate(288deg); }
-        }
-        
-        @keyframes parallaxRotate {
-            0% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(90deg) scale(1.1); }
-            50% { transform: rotate(180deg) scale(1); }
-            75% { transform: rotate(270deg) scale(0.9); }
-            100% { transform: rotate(360deg) scale(1); }
-        }
-        
-        @keyframes parallaxSpin {
-            0% { transform: rotate(0deg) translateX(20px) rotate(0deg); }
-            100% { transform: rotate(360deg) translateX(20px) rotate(-360deg); }
-        }
-        
-        @keyframes parallaxPulse1 {
-            0% { opacity: 0.3; filter: blur(0px); }
-            100% { opacity: 0.7; filter: blur(2px); }
-        }
-        
-        @keyframes parallaxWave {
-            0%, 100% { transform: skewX(0deg) skewY(0deg); }
-            25% { transform: skewX(2deg) skewY(-1deg); }
-            50% { transform: skewX(0deg) skewY(2deg); }
-            75% { transform: skewX(-2deg) skewY(-1deg); }
-        }
-        
-        @keyframes parallaxBreath {
-            0% { opacity: 0.2; transform: scale(1); }
-            100% { opacity: 0.6; transform: scale(1.2); }
-        }
-        
-        /* Enhanced Parallax Elements */
-        .parallax-element {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d;
-            will-change: transform;
-        }
-        
-        .parallax-logo {
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            transform-origin: center;
-            filter: drop-shadow(0 0 20px rgba(255,255,255,0.3));
-        }
-        
-        .parallax-slogan {
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            transform-origin: center;
-        }
-        
-        .parallax-line {
-            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            transform-origin: center;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
-        }
-        
+        /* Subtle hover effects only */
         .parallax-stat {
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: all 0.3s ease-out;
             transform-origin: center;
-            transform-style: preserve-3d;
         }
         
-        .parallax-copyright,
-        .parallax-tagline,
-        .parallax-links {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d;
-        }
-        
-        /* Enhanced parallax hover effects */
         .parallax-stat:hover {
-            transform: translateY(-15px) scale(1.1) rotateX(10deg) rotateY(5deg);
+            transform: translateY(-8px) scale(1.05);
             box-shadow: 
-                0 25px 50px rgba(0,0,0,0.4),
-                0 0 40px rgba(255,255,255,0.2),
-                inset 0 0 20px rgba(255,255,255,0.1);
-            filter: brightness(1.2) drop-shadow(0 0 20px rgba(255,255,255,0.4));
+                0 15px 30px rgba(0,0,0,0.3),
+                0 0 20px rgba(255,255,255,0.15);
         }
         
-        /* Floating animation for stats */
-        .parallax-stat {
-            animation: statFloat 4s ease-in-out infinite;
-        }
-        
-        .parallax-stat:nth-child(1) { animation-delay: 0s; }
-        .parallax-stat:nth-child(2) { animation-delay: 1s; }
-        .parallax-stat:nth-child(3) { animation-delay: 2s; }
-        .parallax-stat:nth-child(4) { animation-delay: 3s; }
-        
-        @keyframes statFloat {
-            0%, 100% { 
-                transform: translateY(0px) rotate(0deg) scale(1);
-                filter: brightness(1);
-            }
-            25% { 
-                transform: translateY(-8px) rotate(2deg) scale(1.02);
-                filter: brightness(1.1);
-            }
-            50% { 
-                transform: translateY(-12px) rotate(0deg) scale(1.05);
-                filter: brightness(1.2);
-            }
-            75% { 
-                transform: translateY(-8px) rotate(-2deg) scale(1.02);
-                filter: brightness(1.1);
-            }
-        }
-        
-        /* Logo breathing effect */
+        /* Minimal logo effect */
         .parallax-logo {
-            animation: logoBreath 6s ease-in-out infinite;
+            transition: all 0.3s ease-out;
         }
         
-        @keyframes logoBreath {
-            0%, 100% { 
-                transform: scale(1) rotate(0deg);
-                filter: drop-shadow(0 0 20px rgba(255,255,255,0.3));
-            }
-            50% { 
-                transform: scale(1.05) rotate(1deg);
-                filter: drop-shadow(0 0 30px rgba(255,255,255,0.5));
-            }
+        .parallax-logo:hover {
+            transform: scale(1.02);
+            text-shadow: 
+                0 0 25px rgba(255,255,255,0.6),
+                3px 3px 0px rgba(0,0,0,1),
+                6px 6px 0px rgba(128,128,128,0.8);
         }
         
-        /* Slogan wave effect */
-        .parallax-slogan {
-            animation: sloganWave 8s ease-in-out infinite;
-        }
-        
-        @keyframes sloganWave {
-            0%, 100% { transform: translateY(0px) skewX(0deg); }
-            25% { transform: translateY(-3px) skewX(1deg); }
-            50% { transform: translateY(0px) skewX(0deg); }
-            75% { transform: translateY(3px) skewX(-1deg); }
-        }
-        
-        /* Line expansion effect */
+        /* Simple line effect */
         .parallax-line {
-            animation: lineExpand 10s ease-in-out infinite;
+            transition: all 0.4s ease-out;
+            width: 8rem;
         }
         
-        @keyframes lineExpand {
-            0%, 100% { 
-                width: 8rem; 
-                transform: scaleX(1);
-                filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
-            }
-            50% { 
-                width: 12rem; 
-                transform: scaleX(1.2);
-                filter: drop-shadow(0 0 20px rgba(255,255,255,0.8));
-            }
+        .parallax-line:hover {
+            width: 10rem;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.6));
         }
         
-        /* Mobile parallax optimizations */
+        /* Mobile optimizations */
         @media (max-width: 768px) {
-            .parallax-bg-1,
-            .parallax-bg-2,
-            .parallax-bg-3,
-            .parallax-bg-4 {
-                animation-duration: 30s;
-            }
-            
-            .parallax-element {
-                transition: transform 0.2s ease-out;
-            }
-            
             .parallax-stat:hover {
-                transform: translateY(-8px) scale(1.05);
+                transform: translateY(-4px) scale(1.02);
                 box-shadow: 
-                    0 15px 30px rgba(0,0,0,0.3),
-                    0 0 20px rgba(255,255,255,0.1);
+                    0 8px 15px rgba(0,0,0,0.2),
+                    0 0 10px rgba(255,255,255,0.1);
             }
             
-            @keyframes statFloat {
-                0%, 100% { transform: translateY(0px) scale(1); }
-                50% { transform: translateY(-5px) scale(1.02); }
+            .parallax-logo:hover {
+                transform: scale(1.01);
+            }
+            
+            .parallax-line:hover {
+                width: 9rem;
             }
         }
         
-        /* Reduced motion for accessibility */
+        /* Respect reduced motion preferences */
         @media (prefers-reduced-motion: reduce) {
-            .parallax-bg-1,
-            .parallax-bg-2,
-            .parallax-bg-3,
-            .parallax-bg-4 {
-                animation: none;
-            }
-            
-            .parallax-element,
             .parallax-stat,
             .parallax-logo,
-            .parallax-slogan,
             .parallax-line {
-                animation: none;
-                transform: none !important;
+                transition: none;
+            }
+            
+            .parallax-stat:hover,
+            .parallax-logo:hover,
+            .parallax-line:hover {
+                transform: none;
+                filter: none;
+                box-shadow: none;
             }
         }

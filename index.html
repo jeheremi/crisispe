@@ -9,45 +9,51 @@
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="text-white"> 
+
+<body class="text-white">
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-spinner"></div>
         <div class="loading-text">Cargando experiencia</div>
         <div class="loading-percentage" id="loadingPercentage">0%</div>
     </div>
-<video autoplay muted loop playsinline class="fixed inset-0 w-full h-full object-cover z-0 opacity-30">
-    <source src="video/nubes.mp4" type="video/mp4">
-</video>
+
     <!-- Ultra dynamic texture overlay -->
     <div class="mega-texture"></div>
     
     <!-- Main Content -->
     <div class="main-content" id="mainContent">
+
+<video autoplay muted loop playsinline class="fixed inset-0 w-full h-full object-cover z-0 opacity-30">
+    <source src="video/nubes.mp4" type="video/mp4">
+</video>  
+
         <!-- Content wrapper -->
         <div class="content-wrapper">
-            <!-- Navigation -->
+            <!-- Navigation - Mobile optimized -->
             <nav class="fixed w-full z-50 bg-black/95 backdrop-blur-sm border-b border-gray-600 pulse-glow">
-                <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
-                    <div class="urban-font text-2xl sm:text-3xl tracking-widest text-white font-black">CRISIS</div>
-                    <div class="hidden md:flex space-x-8">
-                        <a href="#historia" class="hover:text-gray-300 transition-all duration-300 font-bold tech-font hover:scale-110 text-lg tracking-wide">HISTORIA</a>
-                        <a href="#drops" class="hover:text-gray-300 transition-all duration-300 font-bold tech-font hover:scale-110 text-lg tracking-wide">DROPS</a>
-                        <a href="#contacto" class="hover:text-gray-300 transition-all duration-300 font-bold tech-font hover:scale-110 text-lg tracking-wide">CONTACTO</a>
+                <div class="container mx-auto px-3 sm:px-6 py-2 sm:py-4 flex justify-between items-center">
+                    <div class="urban-font text-xl sm:text-2xl md:text-3xl tracking-widest text-white font-black">CRISIS</div>
+                    <div class="hidden md:flex space-x-6 lg:space-x-8">
+                        <a href="#historia" class="hover:text-gray-300 transition-all duration-300 font-bold tech-font hover:scale-110 text-base lg:text-lg tracking-wide">HISTORIA</a>
+                        <a href="#drops" class="hover:text-gray-300 transition-all duration-300 font-bold tech-font hover:scale-110 text-base lg:text-lg tracking-wide">DROPS</a>
+                        <a href="#contacto" class="hover:text-gray-300 transition-all duration-300 font-bold tech-font hover:scale-110 text-base lg:text-lg tracking-wide">CONTACTO</a>
                     </div>
-                    <!-- Mobile menu button -->
-                    <button class="md:hidden text-white text-2xl" onclick="toggleMobileMenu()">☰</button>
-                    <a href="https://instagram.com/crisis_pe" target="_blank" class="hidden sm:block bg-white text-black px-4 sm:px-6 py-2 font-bold hover:bg-gray-200 transition-all duration-300 hover:scale-105 text-sm sm:text-base">
+                    <!-- Mobile menu button - Enhanced -->
+                    <button class="md:hidden text-white text-xl sm:text-2xl p-2 hover:bg-white/10 rounded transition-colors duration-300" onclick="toggleMobileMenu()" aria-label="Menú">
+                        <span id="menuIcon">☰</span>
+                    </button>
+                    <a href="https://instagram.com/crisis_pe" target="_blank" class="hidden sm:block bg-white text-black px-3 sm:px-4 lg:px-6 py-2 font-bold hover:bg-gray-200 transition-all duration-300 hover:scale-105 text-xs sm:text-sm lg:text-base">
                         @CRISIS_PE
                     </a>
                 </div>
-                <!-- Mobile menu -->
-                <div id="mobileMenu" class="md:hidden bg-black/98 border-t border-gray-600 hidden">
+                <!-- Enhanced Mobile menu -->
+                <div id="mobileMenu" class="md:hidden bg-black/98 border-t border-gray-600 hidden transform transition-all duration-300 ease-in-out">
                     <div class="px-4 py-6 space-y-4">
-                        <a href="#historia" class="block text-white font-bold tech-font text-lg py-2 border-b border-gray-700" onclick="closeMobileMenu()">HISTORIA</a>
-                        <a href="#drops" class="block text-white font-bold tech-font text-lg py-2 border-b border-gray-700" onclick="closeMobileMenu()">DROPS</a>
-                        <a href="#contacto" class="block text-white font-bold tech-font text-lg py-2 border-b border-gray-700" onclick="closeMobileMenu()">CONTACTO</a>
-                        <a href="https://instagram.com/crisis_pe" target="_blank" class="block bg-white text-black px-4 py-3 font-bold text-center mt-4">
+                        <a href="#historia" class="block text-white font-bold tech-font text-lg py-3 border-b border-gray-700 hover:bg-white/5 transition-colors duration-300 rounded-t" onclick="closeMobileMenu()">HISTORIA</a>
+                        <a href="#drops" class="block text-white font-bold tech-font text-lg py-3 border-b border-gray-700 hover:bg-white/5 transition-colors duration-300" onclick="closeMobileMenu()">DROPS</a>
+                        <a href="#contacto" class="block text-white font-bold tech-font text-lg py-3 border-b border-gray-700 hover:bg-white/5 transition-colors duration-300 rounded-b" onclick="closeMobileMenu()">CONTACTO</a>
+                        <a href="https://instagram.com/crisis_pe" target="_blank" class="block bg-white text-black px-4 py-3 font-bold text-center mt-6 hover:bg-gray-200 transition-colors duration-300 rounded">
                             @CRISIS_PE
                         </a>
                     </div>
@@ -109,67 +115,70 @@
                         Dos hermanos de Lima que decidieron crear su propia revolución urbana
                     </p>
                     
-                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center explode-in w-full max-w-4xl mx-auto px-4">
-                        <button onclick="scrollToSection('historia')" class="w-full sm:w-auto bg-transparent border-2 border-white px-6 sm:px-8 py-3 sm:py-4 font-black text-base sm:text-lg mega-hover-3d glow-border pulse-glow aggressive-font tracking-wider">
+                    <div class="flex flex-col gap-4 justify-center items-center explode-in w-full px-4 sm:px-6">
+                        <button onclick="scrollToSection('historia')" class="w-full max-w-md bg-transparent border-2 border-white px-6 py-4 font-black text-sm sm:text-base lg:text-lg mega-hover-3d glow-border pulse-glow aggressive-font tracking-wider hover:bg-white hover:text-black transition-all duration-300">
                             DESCUBRE NUESTRA LEYENDA
                         </button>
-                        <button onclick="scrollToSection('drops')" class="w-full sm:w-auto bg-white text-black px-6 sm:px-8 py-3 sm:py-4 font-black text-base sm:text-lg mega-hover-3d aggressive-font tracking-wider">
+                        <button onclick="scrollToSection('drops')" class="w-full max-w-md bg-white text-black px-6 py-4 font-black text-sm sm:text-base lg:text-lg mega-hover-3d aggressive-font tracking-wider hover:bg-gray-200 transition-all duration-300">
                             VER COLECCIÓN
                         </button>
-                        <div class="w-full sm:w-auto bg-gray-800/80 border border-gray-400 px-4 sm:px-6 py-3 text-gray-300 font-black pulse-glow aggressive-font tracking-wider text-center text-sm sm:text-base">
+                        <div class="w-full max-w-md bg-gray-800/80 border border-gray-400 px-4 py-4 text-gray-300 font-black pulse-glow aggressive-font tracking-wider text-center text-sm sm:text-base">
                             NBC SOLD OUT
                         </div>
                     </div>
+                    
+                    <!-- Mobile-specific additional spacing -->
+                    <div class="block sm:hidden h-8"></div>
                 </div>
             </section>
 
-            <!-- Historia Section -->
+            <!-- Historia Section - Mobile optimized -->
             <section id="historia" class="section-spacing relative">
-                <div class="container mx-auto px-6">
-                    <div class="text-center mb-16 fade-up-section">
-                        <h2 class="urban-font section-title text-white stagger-child">LA HISTORIA</h2>
-                        <p class="text-2xl text-gray-300 max-w-3xl mx-auto aggressive-font font-bold tracking-wide stagger-child">
+                <div class="w-full px-4 sm:px-6 max-w-7xl mx-auto">
+                    <div class="text-center mb-12 sm:mb-16 fade-up-section w-full">
+                        <h2 class="urban-font section-title text-white stagger-child w-full">LA HISTORIA</h2>
+                        <p class="text-lg sm:text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto aggressive-font font-bold tracking-wide stagger-child px-2 w-full">
                             CUANDO LA PASIÓN SE ENCUENTRA CON LA REBELDÍA, NACE UNA MARCA LEGENDARIA
                         </p>
                     </div>
                     
-                    <div class="max-w-6xl mx-auto space-y-24">
-                        <!-- Capítulo 1 -->
-                        <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center fade-up-section">
-                            <div class="slide-in-left px-4 lg:px-0 stagger-child">
-                                <div class="bg-gray-800/60 border border-gray-400 px-3 sm:px-4 py-2 inline-block mb-4 sm:mb-6 text-gray-300 font-bold tech-font text-sm sm:text-base">
+                    <div class="w-full space-y-16 sm:space-y-20 lg:space-y-24">
+                        <!-- Capítulo 1 - Mobile optimized -->
+                        <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center fade-up-section w-full">
+                            <div class="slide-in-left w-full stagger-child">
+                                <div class="bg-gray-800/60 border border-gray-400 px-3 py-2 inline-block mb-4 sm:mb-6 text-gray-300 font-bold tech-font text-xs sm:text-sm">
                                     01 / EL INICIO
                                 </div>
-                                <h3 class="street-font text-3xl sm:text-4xl lg:text-5xl mb-4 sm:mb-6 text-white tracking-wide">HERMANOS DE SANGRE Y SUEÑOS</h3>
-                                <p class="content-text mb-6 sm:mb-8">
+                                <h3 class="street-font text-2xl sm:text-3xl lg:text-4xl xl:text-5xl mb-4 sm:mb-6 text-white tracking-wide leading-tight">HERMANOS DE SANGRE Y SUEÑOS</h3>
+                                <p class="content-text mb-6 sm:mb-8 leading-relaxed">
                                     En las calles de Lima, <span class="text-white font-bold">Junior y Jheremi</span> vieron lo que otros ignoraban: una generación hambrienta de identidad propia. No tenían dinero, pero sí algo más valioso: <span class="text-white font-bold">la visión de crear algo que nunca había existido en Perú</span>.
                                 </p>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                                    <div class="bg-black/70 p-4 sm:p-6 text-center glow-border pulse-glow mega-hover-3d">
-                                        <div class="text-2xl sm:text-3xl font-black text-white urban-font">2024</div>
-                                        <div class="text-gray-400 tech-font text-sm sm:text-base">FUNDACIÓN</div>
+                                <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
+                                    <div class="bg-black/70 p-3 sm:p-4 lg:p-6 text-center glow-border pulse-glow mega-hover-3d">
+                                        <div class="text-xl sm:text-2xl lg:text-3xl font-black text-white urban-font">2024</div>
+                                        <div class="text-gray-400 tech-font text-xs sm:text-sm">FUNDACIÓN</div>
                                     </div>
-                                    <div class="bg-gray-700/50 p-4 sm:p-6 text-center glow-border mega-hover-3d">
-                                        <div class="text-2xl sm:text-3xl font-black text-white urban-font">LIMA</div>
-                                        <div class="text-gray-400 tech-font text-sm sm:text-base">ORIGEN</div>
+                                    <div class="bg-gray-700/50 p-3 sm:p-4 lg:p-6 text-center glow-border mega-hover-3d">
+                                        <div class="text-xl sm:text-2xl lg:text-3xl font-black text-white urban-font">LIMA</div>
+                                        <div class="text-gray-400 tech-font text-xs sm:text-sm">ORIGEN</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="slide-in-right stagger-child">
-                                <div class="bg-black/80 p-12 text-center mega-hover-3d glow-border pulse-glow relative overflow-hidden">
+                            <div class="slide-in-right stagger-child mt-8 lg:mt-0">
+                                <div class="bg-black/80 p-8 sm:p-10 lg:p-12 text-center mega-hover-3d glow-border pulse-glow relative overflow-hidden">
                                     <div class="relative z-10">
-                                        <div class="text-8xl mb-6">🤝</div>
-                                        <div class="text-2xl font-black mb-4 text-white urban-font">JUNIOR & JHEREMI</div>
-                                        <div class="text-gray-400 tech-font">Fundadores de Crisis</div>
-                                        <div class="mt-6 w-full h-1 bg-gradient-to-r from-white via-gray-500 to-black"></div>
+                                        <div class="text-6xl sm:text-7xl lg:text-8xl mb-4 sm:mb-6">🤝</div>
+                                        <div class="text-xl sm:text-2xl font-black mb-2 sm:mb-4 text-white urban-font">JUNIOR & JHEREMI</div>
+                                        <div class="text-gray-400 tech-font text-sm sm:text-base">Fundadores de Crisis</div>
+                                        <div class="mt-4 sm:mt-6 w-full h-1 bg-gradient-to-r from-white via-gray-500 to-black"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Capítulo 2 -->
-                        <div class="grid lg:grid-cols-2 gap-16 items-center fade-up-section">
-                            <div class="bg-white text-black p-12 text-center mega-hover-3d lg:order-2 slide-in-right stagger-child relative overflow-hidden">
+                        <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center fade-up-section w-full">
+                            <div class="bg-white text-black p-8 sm:p-12 text-center mega-hover-3d lg:order-2 slide-in-right stagger-child relative overflow-hidden w-full">
                                 <div class="relative z-10">
                                     <div class="text-8xl mb-6">🧵</div>
                                     <div class="text-2xl font-black mb-2 urban-font">PROCESO</div>
@@ -182,11 +191,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="lg:order-1 slide-in-left stagger-child">
+                            <div class="lg:order-1 slide-in-left stagger-child w-full">
                                 <div class="bg-gray-700/60 border border-gray-400 px-4 py-2 inline-block mb-6 text-gray-300 font-bold tech-font">
                                     02 / EL PROCESO
                                 </div>
-                                <h3 class="street-font text-5xl mb-6 text-white tracking-wide">OBSESIÓN POR LA PERFECCIÓN</h3>
+                                <h3 class="street-font text-3xl sm:text-4xl lg:text-5xl mb-6 text-white tracking-wide">OBSESIÓN POR LA PERFECCIÓN</h3>
                                 <p class="content-text mb-8">
                                     Mientras otros tercerizaban todo, nosotros elegimos el camino difícil. <span class="text-white font-bold">Cada hilo, cada corte, cada estampado pasó por nuestras manos</span>. No era solo crear ropa, era forjar una filosofía: si no está perfecto, no lleva nuestro nombre.
                                 </p>
@@ -208,12 +217,12 @@
                         </div>
                         
                         <!-- Capítulo 3 -->
-                        <div class="grid lg:grid-cols-2 gap-16 items-center fade-up-section">
-                            <div class="slide-in-left stagger-child">
+                        <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center fade-up-section w-full">
+                            <div class="slide-in-left stagger-child w-full">
                                 <div class="bg-gray-600/60 border border-gray-300 px-4 py-2 inline-block mb-6 text-gray-200 font-bold tech-font">
                                     03 / PRIMER DROP
                                 </div>
-                                <h3 class="street-font text-5xl mb-6 text-white tracking-wide">EL PRIMER GRITO</h3>
+                                <h3 class="street-font text-3xl sm:text-4xl lg:text-5xl mb-6 text-white tracking-wide">EL PRIMER GRITO</h3>
                                 <p class="content-text mb-8">
                                     <span class="text-white font-bold">"Negros Bien Chingones"</span> no fue solo un nombre, fue una declaración de guerra contra lo establecido. Cada polo NBC que salió a la calle llevaba nuestra alma, nuestro orgullo, nuestra rebeldía. <span class="text-white font-bold">Era el momento de que Lima supiera que Crisis había llegado para quedarse</span>.
                                 </p>
@@ -222,8 +231,8 @@
                                     <div class="text-gray-400 mt-2 font-bold tech-font">- Junior & Jheremi, Fundadores</div>
                                 </div>
                             </div>
-                            <div class="slide-in-right stagger-child">
-                                <div class="bg-black/80 p-12 text-center mega-hover-3d glow-border pulse-glow relative overflow-hidden">
+                            <div class="slide-in-right stagger-child w-full">
+                                <div class="bg-black/80 p-8 sm:p-12 text-center mega-hover-3d glow-border pulse-glow relative overflow-hidden w-full">
                                     <div class="relative z-10">
                                         <div class="w-40 h-40 mx-auto bg-gradient-to-br from-gray-600 to-black mb-6 flex items-center justify-center border-4 border-white/20">
                                             <span class="text-6xl">👕</span>
@@ -241,43 +250,43 @@
                 </div>
             </section>
 
-            <!-- Drops Section -->
+            <!-- Drops Section - Mobile optimized -->
             <section id="drops" class="section-spacing relative">
-                <div class="container mx-auto px-6">
-                    <div class="text-center mb-16 fade-up-section">
-                        <h2 class="urban-font section-title text-white stagger-child">DROPS</h2>
-                        <p class="text-2xl text-gray-300 max-w-4xl mx-auto aggressive-font font-bold tracking-wide stagger-child">
+                <div class="w-full px-4 sm:px-6 max-w-7xl mx-auto">
+                    <div class="text-center mb-12 sm:mb-16 fade-up-section w-full">
+                        <h2 class="urban-font section-title text-white stagger-child w-full">DROPS</h2>
+                        <p class="text-lg sm:text-xl lg:text-2xl text-gray-300 max-w-5xl mx-auto aggressive-font font-bold tracking-wide stagger-child px-2 leading-tight w-full">
                             NO VENDEMOS ROPA, VENDEMOS ACTITUD. NO CREAMOS PRODUCTOS, CREAMOS LEYENDAS
                         </p>
                     </div>
                     
-                    <!-- NBC Drop -->
-                    <div class="max-w-6xl mx-auto mb-20 fade-up-section">
-                        <div class="grid lg:grid-cols-2 gap-16 items-center">
-                            <div class="scale-in stagger-child">
-                                <div class="bg-black/80 p-12 glow-border relative">
-                                    <div class="absolute -top-3 -right-3 bg-gray-700 text-white px-4 py-2 font-black text-sm tech-font">
+                    <!-- NBC Drop - Mobile optimized -->
+                    <div class="w-full mb-16 sm:mb-20 fade-up-section">
+                        <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full">
+                            <div class="scale-in stagger-child w-full">
+                                <div class="bg-black/80 p-6 sm:p-8 lg:p-12 glow-border relative">
+                                    <div class="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 bg-gray-700 text-white px-3 py-1 sm:px-4 sm:py-2 font-black text-xs sm:text-sm tech-font">
                                         SOLD OUT
                                     </div>
                                     <div class="text-center">
-                                        <div class="w-80 h-80 mx-auto bg-gradient-to-br from-gray-700 to-black mb-8 flex items-center justify-center border-4 border-white/20">
-                                            <span class="text-8xl">👕</span>
+                                        <div class="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 mx-auto bg-gradient-to-br from-gray-700 to-black mb-6 sm:mb-8 flex items-center justify-center border-4 border-white/20">
+                                            <span class="text-5xl sm:text-6xl lg:text-8xl">👕</span>
                                         </div>
-                                        <div class="text-4xl font-black mb-4 text-white street-font">POLO NBC</div>
-                                        <div class="text-gray-400 text-xl mb-6 font-bold tech-font">NEGROS BIEN CHINGONES</div>
-                                        <div class="text-5xl font-black mb-8 text-white modern-font">S/. 45</div>
-                                        <button class="w-full bg-gray-700 text-white py-4 font-black text-xl tech-font hover:bg-gray-600 transition-colors duration-300">
+                                        <div class="text-2xl sm:text-3xl lg:text-4xl font-black mb-3 sm:mb-4 text-white street-font">POLO NBC</div>
+                                        <div class="text-gray-400 text-base sm:text-lg lg:text-xl mb-4 sm:mb-6 font-bold tech-font">NEGROS BIEN CHINGONES</div>
+                                        <div class="text-3xl sm:text-4xl lg:text-5xl font-black mb-6 sm:mb-8 text-white modern-font">S/. 45</div>
+                                        <button class="w-full bg-gray-700 text-white py-3 sm:py-4 font-black text-lg sm:text-xl tech-font hover:bg-gray-600 transition-colors duration-300">
                                             AGOTADO
                                         </button>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="slide-in-right stagger-child">
+                            <div class="slide-in-right stagger-child w-full">
                                 <div class="bg-white/10 border border-white/20 px-4 py-2 inline-block mb-6 text-white font-bold tech-font">
                                     PRIMER DROP
                                 </div>
-                                <h3 class="street-font text-6xl mb-8 text-white">LA LEYENDA NBC</h3>
+                                <h3 class="street-font text-4xl sm:text-5xl lg:text-6xl mb-8 text-white">LA LEYENDA NBC</h3>
                                 <p class="content-text mb-10">
                                     El drop que cambió todo. NBC no fue solo nuestro debut, fue <span class="text-white font-bold">el momento exacto en que el streetwear peruano encontró su voz</span>. Cada polo vendido fue un voto de confianza, cada persona que lo usó se convirtió en embajador de nuestra revolución.
                                 </p>
@@ -316,8 +325,8 @@
                             <p class="text-black font-bold tech-font text-lg mt-2">LA TEMPORADA MÁS CALIENTE</p>
                         </div>
                         
-                        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
-                            <div class="bg-gray-800/80 p-10 glow-border hover:bg-gray-700/80 transition-all duration-500 mega-hover-3d scale-in stagger-child">
+                        <div class="grid md:grid-cols-3 gap-6 sm:gap-8 w-full mb-16">
+                            <div class="bg-gray-800/80 p-6 sm:p-8 lg:p-10 glow-border hover:bg-gray-700/80 transition-all duration-500 mega-hover-3d scale-in stagger-child w-full">
                                 <div class="text-7xl mb-6">🩳</div>
                                 <h4 class="text-3xl font-black mb-4 text-white street-font">SHORTS CRISIS</h4>
                                 <p class="text-gray-300 tech-font font-bold text-lg mb-4">COLECCIÓN VERANO</p>
@@ -330,7 +339,7 @@
                                 <div class="mt-4 text-white font-black tech-font">ENERO 2025</div>
                             </div>
                             
-                            <div class="bg-black/90 p-10 glow-border hover:bg-black transition-all duration-500 mega-hover-3d scale-in stagger-child">
+                            <div class="bg-black/90 p-6 sm:p-8 lg:p-10 glow-border hover:bg-black transition-all duration-500 mega-hover-3d scale-in stagger-child w-full">
                                 <div class="text-7xl mb-6">🏖️</div>
                                 <h4 class="text-3xl font-black mb-4 text-white street-font">BEACH COLLECTION</h4>
                                 <p class="text-gray-300 tech-font font-bold text-lg mb-4">EDICIÓN LIMITADA</p>
@@ -343,7 +352,7 @@
                                 <div class="mt-4 text-gray-300 font-black tech-font">FEBRERO 2025</div>
                             </div>
                             
-                            <div class="bg-gray-700/80 p-10 glow-border hover:bg-gray-600/80 transition-all duration-500 mega-hover-3d scale-in stagger-child">
+                            <div class="bg-gray-700/80 p-6 sm:p-8 lg:p-10 glow-border hover:bg-gray-600/80 transition-all duration-500 mega-hover-3d scale-in stagger-child w-full">
                                 <div class="text-7xl mb-6">⛓️</div>
                                 <h4 class="text-3xl font-black mb-4 text-white street-font">URBAN JEWELRY</h4>
                                 <p class="text-gray-300 tech-font font-bold text-lg mb-4">ACCESORIOS PREMIUM</p>
@@ -358,7 +367,7 @@
                         </div>
                         
                         <!-- Newsletter -->
-                        <div class="bg-gradient-to-br from-black/90 to-gray-900/90 p-12 max-w-3xl mx-auto glow-border scale-in stagger-child">
+                        <div class="bg-gradient-to-br from-black/90 to-gray-900/90 p-6 sm:p-8 lg:p-12 w-full max-w-4xl mx-auto glow-border scale-in stagger-child">
                             <div class="text-center mb-8">
                                 <div class="text-6xl mb-4">🔥</div>
                                 <h4 class="street-font text-4xl mb-4 text-white">FORMA PARTE DE LA HISTORIA</h4>
@@ -394,16 +403,16 @@
                 </div>
             </section>
 
-            <!-- Contact Section -->
+            <!-- Contact Section - Mobile optimized -->
             <section id="contacto" class="section-spacing">
-                <div class="container mx-auto px-6">
-                    <div class="text-center mb-16 fade-up-section">
-                        <h2 class="urban-font section-title text-white stagger-child">CONTACTO</h2>
-                        <p class="text-2xl text-gray-300 tech-font stagger-child">¿Tienes lo que se necesita para ser parte de la revolución?</p>
+                <div class="w-full px-4 sm:px-6 max-w-7xl mx-auto">
+                    <div class="text-center mb-12 sm:mb-16 fade-up-section w-full">
+                        <h2 class="urban-font section-title text-white stagger-child w-full">CONTACTO</h2>
+                        <p class="text-lg sm:text-xl lg:text-2xl text-gray-300 tech-font stagger-child px-2 w-full">¿Tienes lo que se necesita para ser parte de la revolución?</p>
                     </div>
                     
-                    <!-- Redes Sociales -->
-                    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-16 fade-up-section">
+                    <!-- Redes Sociales - Mobile optimized -->
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 w-full mb-12 sm:mb-16 fade-up-section">
                         <a href="https://instagram.com/crisis_pe" target="_blank" class="bg-gray-800/80 p-8 mega-hover-3d glow-border block text-center scale-in stagger-child hover:bg-gray-700/80 transition-all duration-300">
                             <div class="text-5xl mb-4">📱</div>
                             <h3 class="text-xl font-bold mb-2 urban-font text-white">INSTAGRAM</h3>
@@ -485,28 +494,28 @@
                 </div>
             </section>
 
-            <!-- Footer -->
-            <footer class="bg-gradient-to-t from-black to-gray-900 py-16 border-t border-gray-700 fade-up-section relative overflow-hidden" id="footer">
+            <!-- Footer - Mobile optimized -->
+            <footer class="bg-gradient-to-t from-black to-gray-900 py-12 sm:py-16 border-t border-gray-700 fade-up-section relative overflow-hidden" id="footer">
                 <!-- Enhanced Parallax Background Elements -->
                 <div class="parallax-bg-1 absolute inset-0 opacity-12"></div>
                 <div class="parallax-bg-2 absolute inset-0 opacity-8"></div>
                 <div class="parallax-bg-3 absolute inset-0 opacity-18"></div>
                 <div class="parallax-bg-4 absolute inset-0 opacity-6"></div>
                 
-                <div class="container mx-auto px-6 relative z-10">
-                    <!-- Logo y Slogan Principal -->
-                    <div class="text-center mb-12 stagger-child parallax-element" data-speed="0.3">
-                        <div class="urban-font text-6xl mb-4 text-white font-black tracking-widest parallax-logo">CRISIS</div>
-                        <p class="text-xl text-gray-300 aggressive-font font-bold parallax-slogan">LA CALLE NO TE DEFINE, TÚ LA REDEFINÉS</p>
-                        <div class="mt-6 w-32 h-1 bg-gradient-to-r from-white via-gray-500 to-white mx-auto parallax-line"></div>
+                <div class="container mx-auto px-4 sm:px-6 relative z-10">
+                    <!-- Logo y Slogan Principal - Mobile optimized -->
+                    <div class="text-center mb-10 sm:mb-12 stagger-child parallax-element" data-speed="0.3">
+                        <div class="urban-font text-4xl sm:text-5xl lg:text-6xl mb-3 sm:mb-4 text-white font-black tracking-widest parallax-logo">CRISIS</div>
+                        <p class="text-base sm:text-lg lg:text-xl text-gray-300 aggressive-font font-bold parallax-slogan px-2">LA CALLE NO TE DEFINE, TÚ LA REDEFINÉS</p>
+                        <div class="mt-4 sm:mt-6 w-24 sm:w-32 h-1 bg-gradient-to-r from-white via-gray-500 to-white mx-auto parallax-line"></div>
                     </div>
                     
-                    <!-- Grid Principal -->
-                    <div class="grid md:grid-cols-4 gap-8 mb-12 max-w-6xl mx-auto">
+                    <!-- Grid Principal - Mobile optimized -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-10 sm:mb-12 max-w-6xl mx-auto">
                         <!-- Columna 1: La Marca -->
                         <div class="text-center md:text-left stagger-child parallax-element" data-speed="0.2">
-                            <h4 class="font-black mb-4 urban-font text-lg text-white">LA MARCA</h4>
-                            <div class="space-y-2 text-gray-400 tech-font">
+                            <h4 class="font-black mb-3 sm:mb-4 urban-font text-sm sm:text-base lg:text-lg text-white">LA MARCA</h4>
+                            <div class="space-y-1 sm:space-y-2 text-gray-400 tech-font text-xs sm:text-sm">
                                 <p>Streetwear auténtico</p>
                                 <p>Hecho en Lima</p>
                                 <p>Calidad premium</p>
@@ -516,8 +525,8 @@
                         
                         <!-- Columna 2: Fundadores -->
                         <div class="text-center md:text-left stagger-child parallax-element" data-speed="0.4">
-                            <h4 class="font-black mb-4 urban-font text-lg text-white">FUNDADORES</h4>
-                            <div class="space-y-2 text-gray-400 tech-font">
+                            <h4 class="font-black mb-3 sm:mb-4 urban-font text-sm sm:text-base lg:text-lg text-white">FUNDADORES</h4>
+                            <div class="space-y-1 sm:space-y-2 text-gray-400 tech-font text-xs sm:text-sm">
                                 <p>Junior Mendoza</p>
                                 <p>Jheremi Castillo</p>
                                 <p>Hermanos de sueños</p>
@@ -527,8 +536,8 @@
                         
                         <!-- Columna 3: Productos -->
                         <div class="text-center md:text-left stagger-child parallax-element" data-speed="0.6">
-                            <h4 class="font-black mb-4 urban-font text-lg text-white">PRODUCTOS</h4>
-                            <div class="space-y-2 text-gray-400 tech-font">
+                            <h4 class="font-black mb-3 sm:mb-4 urban-font text-sm sm:text-base lg:text-lg text-white">PRODUCTOS</h4>
+                            <div class="space-y-1 sm:space-y-2 text-gray-400 tech-font text-xs sm:text-sm">
                                 <p>Polos NBC</p>
                                 <p>Shorts de verano</p>
                                 <p>Joyería urbana</p>
@@ -538,18 +547,18 @@
                         
                         <!-- Columna 4: Redes -->
                         <div class="text-center md:text-left stagger-child parallax-element" data-speed="0.8">
-                            <h4 class="font-black mb-4 urban-font text-lg text-white">SÍGUENOS</h4>
-                            <div class="space-y-3">
-                                <a href="https://instagram.com/crisis_pe" target="_blank" class="block text-gray-300 hover:text-white transition-colors tech-font">
+                            <h4 class="font-black mb-3 sm:mb-4 urban-font text-sm sm:text-base lg:text-lg text-white">SÍGUENOS</h4>
+                            <div class="space-y-2 sm:space-y-3">
+                                <a href="https://instagram.com/crisis_pe" target="_blank" class="block text-gray-300 hover:text-white transition-colors tech-font text-xs sm:text-sm">
                                     📱 @crisis_pe
                                 </a>
-                                <a href="https://tiktok.com/@crisis_pe" target="_blank" class="block text-gray-300 hover:text-white transition-colors tech-font">
+                                <a href="https://tiktok.com/@crisis_pe" target="_blank" class="block text-gray-300 hover:text-white transition-colors tech-font text-xs sm:text-sm">
                                     🎵 @crisis_pe
                                 </a>
-                                <a href="https://facebook.com/crisispe" target="_blank" class="block text-gray-300 hover:text-white transition-colors tech-font">
+                                <a href="https://facebook.com/crisispe" target="_blank" class="block text-gray-300 hover:text-white transition-colors tech-font text-xs sm:text-sm">
                                     👥 Crisis Streetwear
                                 </a>
-                                <a href="https://youtube.com/@crisispe" target="_blank" class="block text-gray-300 hover:text-white transition-colors tech-font">
+                                <a href="https://youtube.com/@crisispe" target="_blank" class="block text-gray-300 hover:text-white transition-colors tech-font text-xs sm:text-sm">
                                     📺 Crisis TV
                                 </a>
                             </div>
