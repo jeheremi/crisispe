@@ -2,12 +2,44 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CRISIS - Streetwear Peruano | NBC Drop</title>
     <meta name="description" content="Crisis - Streetwear auténtico desde las calles de Lima. Junior y Jheremi creando cultura urbana.">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        @media (max-width: 768px) {
+            video.fixed {
+                position: absolute;
+            }
+            .crisis-initial-container, .hero-content-section {
+                height: 100dvh;
+            }
+            button, a {
+                min-height: 48px;
+                min-width: 48px;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001s !important;
+                transition-duration: 0.001s !important;
+            }
+        }
+        @media (max-width: 360px) {
+            .section-title {
+                font-size: clamp(1.8rem, 12vw, 2.8rem);
+            }
+            .content-text {
+                font-size: clamp(0.95rem, 4.5vw, 1.1rem);
+            }
+        }
+    </style>
+
 </head>
 
 <body class="text-white">

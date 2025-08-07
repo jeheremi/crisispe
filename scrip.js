@@ -1,61 +1,45 @@
-        // Optimized loading screen - faster and smoother
-        window.addEventListener('load', function() {
-            let progress = 0;
-            const percentageElement = document.getElementById('loadingPercentage');
-            const loadingText = document.querySelector('.loading-text');
+       // Versión extendida del loading
+      window.addEventListener('load', () => {
+        let progress = 0;
+        const percentageElement = document.getElementById('loadingPercentage');
+        const loadingText = document.querySelector('.loading-text');
+        const loadingScreen = document.getElementById('loadingScreen');
+        const mainContent = document.getElementById('mainContent');
+
+        const loadingPhases = [
+          { text: "Cargando...", increment: 4 },
+          { text: "Preparando...", increment: 6 },
+          { text: "Casi listo...", increment: 8 }
+        ];
+
+        let currentPhase = 0;
+
+        const progressInterval = setInterval(() => {
+          const phase = loadingPhases[currentPhase];
+          loadingText.textContent = phase.text;
+          progress += Math.random() * phase.increment + 2;
+
+          if (progress > 100) progress = 100;
+          percentageElement.textContent = Math.floor(progress) + '%';
+
+          if (progress > 30 && currentPhase === 0) currentPhase = 1;
+          if (progress > 70 && currentPhase === 1) currentPhase = 2;
+
+          if (progress >= 100) {
+            clearInterval(progressInterval);
+            percentageElement.textContent = '100%';
+            loadingText.textContent = 'Listo';
             
-            // Faster loading phases
-            const loadingPhases = [
-                { text: "Cargando...", increment: 8 },
-                { text: "Preparando...", increment: 12 },
-                { text: "Casi listo...", increment: 15 }
-            ];
-            
-            let currentPhase = 0;
-            
-            const progressInterval = setInterval(() => {
-                const phase = loadingPhases[currentPhase];
-                
-                // Update loading text
-                loadingText.textContent = phase.text;
-                
-                // Fast increment
-                progress += Math.random() * phase.increment + 5;
-                
-                // Ensure we don't exceed 100%
-                if (progress > 100) progress = 100;
-                
-                // Update percentage
-                percentageElement.textContent = Math.floor(progress) + '%';
-                
-                // Move to next phase
-                if (progress > 30 && currentPhase === 0) currentPhase = 1;
-                if (progress > 70 && currentPhase === 1) currentPhase = 2;
-                
-                // Complete loading
-                if (progress >= 100) {
-                    clearInterval(progressInterval);
-                    percentageElement.textContent = '100%';
-                    loadingText.textContent = 'Listo';
-                    
-                    // Quick fade out
-                    setTimeout(() => {
-                        const loadingScreen = document.getElementById('loadingScreen');
-                        const mainContent = document.getElementById('mainContent');
-                        
-                        loadingScreen.classList.add('fade-out');
-                        
-                        setTimeout(() => {
-                            loadingScreen.style.display = 'none';
-                            mainContent.classList.add('visible');
-                            
-                            // Initialize scroll-triggered animations after loading
-                            initializeScrollAnimations();
-                        }, 1000);
-                    }, 300);
-                }
-            }, 80); // Faster interval
-        });
+            setTimeout(() => {
+              loadingScreen.classList.add('fade-out');
+              setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                mainContent.classList.add('visible');
+              }, 1500);
+            }, 1000);
+          }
+        }, 120); // Intervalo más largo para duración extendida
+      });
 
         // Optimized scroll animations system
         let crisisExited = false;
