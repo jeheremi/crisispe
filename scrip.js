@@ -1,45 +1,69 @@
-       // Versión extendida del loading
-      window.addEventListener('load', () => {
-        let progress = 0;
-        const percentageElement = document.getElementById('loadingPercentage');
-        const loadingText = document.querySelector('.loading-text');
-        const loadingScreen = document.getElementById('loadingScreen');
-        const mainContent = document.getElementById('mainContent');
+        // Loading screen con frases completas y duración ajustada
+        window.addEventListener('load', function () {
+            let progress = 0;
+            const percentageElement = document.getElementById('loadingPercentage');
+            const loadingText = document.querySelector('.loading-text');
+            const loadingScreen = document.getElementById('loadingScreen');
+            const mainContent = document.getElementById('mainContent');
 
-        const loadingPhases = [
-          { text: "Cargando...", increment: 4 },
-          { text: "Preparando...", increment: 6 },
-          { text: "Casi listo...", increment: 8 }
-        ];
+            const loadingPhrases = [
+                "Cargando...",
+                "Preparando la revolución...",
+                "El estilo se está despertando...",
+                "Afilando ideas callejeras...",
+                "Conectando actitud con tela...",
+                "La calle no te define, tú la redefines...",
+                "Casi listo para hacer historia...",
+                "Listo para soltar fuego..."
+            ];
 
-        let currentPhase = 0;
+            const loadingPhases = [
+                { increment: 1.5 },
+                { increment: 2 },
+                { increment: 2.5 }
+            ];
 
-        const progressInterval = setInterval(() => {
-          const phase = loadingPhases[currentPhase];
-          loadingText.textContent = phase.text;
-          progress += Math.random() * phase.increment + 2;
+            let currentPhase = 0;
+            let phraseIndex = 0;
+            let phraseTimer = 0;
+            const phraseDelay = 1600; // tiempo mínimo por frase (1.6s)
 
-          if (progress > 100) progress = 100;
-          percentageElement.textContent = Math.floor(progress) + '%';
+            const progressInterval = setInterval(() => {
+                const phase = loadingPhases[currentPhase];
+                progress += Math.random() * phase.increment + 0.5;
 
-          if (progress > 30 && currentPhase === 0) currentPhase = 1;
-          if (progress > 70 && currentPhase === 1) currentPhase = 2;
+                if (progress > 100) progress = 100;
+                percentageElement.textContent = Math.floor(progress) + '%';
 
-          if (progress >= 100) {
-            clearInterval(progressInterval);
-            percentageElement.textContent = '100%';
-            loadingText.textContent = 'Listo';
-            
-            setTimeout(() => {
-              loadingScreen.classList.add('fade-out');
-              setTimeout(() => {
-                loadingScreen.style.display = 'none';
-                mainContent.classList.add('visible');
-              }, 1500);
-            }, 1000);
-          }
-        }, 120); // Intervalo más largo para duración extendida
-      });
+                phraseTimer += 100;
+                if (phraseTimer >= phraseDelay) {
+                    loadingText.textContent = loadingPhrases[phraseIndex % loadingPhrases.length];
+                    phraseIndex++;
+                    phraseTimer = 0;
+                }
+
+                if (progress > 30 && currentPhase === 0) currentPhase = 1;
+                if (progress > 70 && currentPhase === 1) currentPhase = 2;
+
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    percentageElement.textContent = '100%';
+                    loadingText.textContent = 'Listo';
+
+                    setTimeout(() => {
+                        loadingScreen.classList.add('fade-out');
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                            mainContent.classList.add('visible');
+
+                            if (typeof initializeScrollAnimations === 'function') {
+                                initializeScrollAnimations();
+                            }
+                        }, 1200);
+                    }, 600);
+                }
+            }, 100); // ritmo controlado para dar tiempo a todas las frases
+        });
 
         // Optimized scroll animations system
         let crisisExited = false;
