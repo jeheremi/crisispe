@@ -6,427 +6,595 @@
     <title>CRISIS - Streetwear Peruano | NBC Drop</title>
     <meta name="description" content="Crisis - Streetwear auténtico desde las calles de Lima. Junior y Jheremi creando cultura urbana.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Black+Ops+One&family=Teko:wght@300;400;500;600;700&family=Russo+One&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
+
 <body class="text-white">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Cargando experiencia</div>
+        <div class="loading-percentage" id="loadingPercentage">0%</div>
+    </div>
+
     <!-- Ultra dynamic texture overlay -->
     <div class="mega-texture"></div>
     
-    <!-- Floating particles -->
-    <div class="particle" style="left: 10%; width: 4px; height: 4px; animation-delay: 0s;"></div>
-    <div class="particle" style="left: 20%; width: 6px; height: 6px; animation-delay: 2s;"></div>
-    <div class="particle" style="left: 30%; width: 3px; height: 3px; animation-delay: 4s;"></div>
-    <div class="particle" style="left: 40%; width: 5px; height: 5px; animation-delay: 6s;"></div>
-    <div class="particle" style="left: 50%; width: 4px; height: 4px; animation-delay: 8s;"></div>
-    <div class="particle" style="left: 60%; width: 7px; height: 7px; animation-delay: 10s;"></div>
-    <div class="particle" style="left: 70%; width: 3px; height: 3px; animation-delay: 12s;"></div>
-    <div class="particle" style="left: 80%; width: 5px; height: 5px; animation-delay: 14s;"></div>
-    <div class="particle" style="left: 90%; width: 4px; height: 4px; animation-delay: 16s;"></div>
-    
-    <!-- Content wrapper -->
-    <div class="content-wrapper">
-        <!-- Navigation -->
-        <nav class="fixed w-full z-50 bg-black/95 backdrop-blur-sm border-b border-gray-600 pulse-glow">
-            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-                <div class="urban-font text-3xl tracking-widest text-white font-black">CRISIS</div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#historia" class="hover:text-gray-300 transition-all duration-300 font-bold tech-font hover:scale-110 text-lg tracking-wide">HISTORIA</a>
-                    <a href="#drops" class="hover:text-gray-300 transition-all duration-300 font-bold tech-font hover:scale-110 text-lg tracking-wide">DROPS</a>
-                    <a href="#contacto" class="hover:text-gray-300 transition-all duration-300 font-bold tech-font hover:scale-110 text-lg tracking-wide">CONTACTO</a>
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+            <!-- Navigation -->
+            <nav class="fixed w-full z-50 bg-black/95 backdrop-blur-sm border-b border-gray-600 pulse-glow">
+                <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
+                    <div class="urban-font text-2xl sm:text-3xl tracking-widest text-white font-black">CRISIS</div>
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#historia" class="hover:text-gray-300 transition-all duration-300 font-bold tech-font hover:scale-110 text-lg tracking-wide">HISTORIA</a>
+                        <a href="#drops" class="hover:text-gray-300 transition-all duration-300 font-bold tech-font hover:scale-110 text-lg tracking-wide">DROPS</a>
+                        <a href="#contacto" class="hover:text-gray-300 transition-all duration-300 font-bold tech-font hover:scale-110 text-lg tracking-wide">CONTACTO</a>
+                    </div>
+                    <!-- Mobile menu button -->
+                    <button class="md:hidden text-white text-2xl" onclick="toggleMobileMenu()">☰</button>
+                    <a href="https://instagram.com/crisis_pe" target="_blank" class="hidden sm:block bg-white text-black px-4 sm:px-6 py-2 font-bold hover:bg-gray-200 transition-all duration-300 hover:scale-105 text-sm sm:text-base">
+                        @CRISIS_PE
+                    </a>
                 </div>
-                <a href="https://instagram.com/crisis_pe" target="_blank" class="bg-white text-black px-6 py-2 font-bold hover:bg-gray-200 transition-all duration-300 hover:scale-105 mega-hover-3d">
-                    @CRISIS_PE
-                </a>
-            </div>
-        </nav>
+                <!-- Mobile menu -->
+                <div id="mobileMenu" class="md:hidden bg-black/98 border-t border-gray-600 hidden">
+                    <div class="px-4 py-6 space-y-4">
+                        <a href="#historia" class="block text-white font-bold tech-font text-lg py-2 border-b border-gray-700" onclick="closeMobileMenu()">HISTORIA</a>
+                        <a href="#drops" class="block text-white font-bold tech-font text-lg py-2 border-b border-gray-700" onclick="closeMobileMenu()">DROPS</a>
+                        <a href="#contacto" class="block text-white font-bold tech-font text-lg py-2 border-b border-gray-700" onclick="closeMobileMenu()">CONTACTO</a>
+                        <a href="https://instagram.com/crisis_pe" target="_blank" class="block bg-white text-black px-4 py-3 font-bold text-center mt-4">
+                            @CRISIS_PE
+                        </a>
+                    </div>
+                </div>
+            </nav>
 
-        <!-- Hero Section -->
-        <section class="min-h-screen flex items-center justify-center section-spacing relative overflow-hidden">
-            <!-- Energy waves -->
-            <div class="energy-wave" style="top: -50%; left: -50%;"></div>
-            <div class="energy-wave" style="top: -50%; left: -50%;"></div>
-            <div class="energy-wave" style="top: -50%; left: -50%;"></div>
-            <div class="energy-wave" style="top: -50%; left: -50%;"></div>
-            
-            <!-- Floating geometric shapes -->
-            <div class="floating-shape top-20 left-10 w-32 h-32 border-4 border-white/20 slow-rotate"></div>
-            <div class="floating-shape bottom-20 right-10 w-24 h-24 bg-gray-600/30 reverse-rotate transform rotate-45"></div>
-            <div class="floating-shape top-1/3 right-1/4 text-9xl opacity-10 urban-font text-gray-500 slow-rotate">C</div>
-            <div class="floating-shape bottom-1/3 left-1/4 text-7xl opacity-10 urban-font text-gray-400 reverse-rotate">R</div>
-            <div class="floating-shape top-1/2 left-10 w-20 h-20 bg-gradient-to-br from-white/10 to-transparent transform rotate-12 slow-rotate"></div>
-            <div class="floating-shape bottom-1/4 right-1/3 w-16 h-16 border-2 border-gray-400/30 reverse-rotate"></div>
-            
-            <div class="container mx-auto px-6 text-center relative z-10">
-                <div class="mega-crisis-title mb-12" data-text="CRISIS">CRISIS</div>
-                
-                <div class="max-w-4xl mx-auto mb-12 explode-in">
-                    <h2 class="text-3xl md:text-5xl font-black mb-6 aggressive-font tracking-wide" id="hero-subtitle">
-                        <span class="letter-reveal stagger-1">N</span>
-                        <span class="letter-reveal stagger-2">O</span>
+            <!-- Hero Section - Initial CRISIS Display -->
+            <section class="crisis-initial-container" id="heroSection">
+                <!-- Split CRISIS word -->
+                <div class="crisis-word" id="crisisWord">
+                    <span class="crisis-left">CRI</span><span class="crisis-right">SIS</span>
+                </div>
+            </section>
+
+            <!-- Hero Content Section - Hidden Initially -->
+            <section class="hero-content-section" id="heroContentSection">
+                <div class="hero-subtitle-container">
+                    <h2 class="text-3xl md:text-5xl font-black mb-6 aggressive-font tracking-wide">
+                        <span class="letter-reveal stagger-1">L</span>
+                        <span class="letter-reveal stagger-2">A</span>
                         <span class="letter-reveal stagger-3"> </span>
-                        <span class="letter-reveal stagger-4">E</span>
-                        <span class="letter-reveal stagger-5">S</span>
+                        <span class="letter-reveal stagger-4">C</span>
+                        <span class="letter-reveal stagger-5">A</span>
+                        <span class="letter-reveal stagger-6">L</span>
+                        <span class="letter-reveal stagger-1">L</span>
+                        <span class="letter-reveal stagger-2">E</span>
+                        <span class="letter-reveal stagger-3"> </span>
+                        <span class="letter-reveal stagger-4">N</span>
+                        <span class="letter-reveal stagger-5">O</span>
                         <span class="letter-reveal stagger-6"> </span>
-                        <span class="letter-reveal stagger-1">S</span>
-                        <span class="letter-reveal stagger-2">O</span>
-                        <span class="letter-reveal stagger-3">L</span>
-                        <span class="letter-reveal stagger-4">O</span>
-                        <span class="letter-reveal stagger-5"> </span>
-                        <span class="letter-reveal stagger-6">R</span>
-                        <span class="letter-reveal stagger-1">O</span>
-                        <span class="letter-reveal stagger-2">P</span>
-                        <span class="letter-reveal stagger-3">A</span>
+                        <span class="letter-reveal stagger-1">T</span>
+                        <span class="letter-reveal stagger-2">E</span>
+                        <span class="letter-reveal stagger-3"> </span>
+                        <span class="letter-reveal stagger-4">D</span>
+                        <span class="letter-reveal stagger-5">E</span>
+                        <span class="letter-reveal stagger-6">F</span>
+                        <span class="letter-reveal stagger-1">I</span>
+                        <span class="letter-reveal stagger-2">N</span>
+                        <span class="letter-reveal stagger-3">E</span>
                         <span class="letter-reveal stagger-4">,</span>
                         <br>
-                        <span class="letter-reveal stagger-5">E</span>
-                        <span class="letter-reveal stagger-6">S</span>
+                        <span class="letter-reveal stagger-5">T</span>
+                        <span class="letter-reveal stagger-6">Ú</span>
                         <span class="letter-reveal stagger-1"> </span>
-                        <span class="letter-reveal stagger-2">U</span>
-                        <span class="letter-reveal stagger-3">N</span>
-                        <span class="letter-reveal stagger-4">A</span>
-                        <span class="letter-reveal stagger-5"> </span>
-                        <span class="letter-reveal stagger-6">D</span>
-                        <span class="letter-reveal stagger-1">E</span>
-                        <span class="letter-reveal stagger-2">C</span>
-                        <span class="letter-reveal stagger-3">L</span>
-                        <span class="letter-reveal stagger-4">A</span>
-                        <span class="letter-reveal stagger-5">R</span>
-                        <span class="letter-reveal stagger-6">A</span>
-                        <span class="letter-reveal stagger-1">C</span>
-                        <span class="letter-reveal stagger-2">I</span>
-                        <span class="letter-reveal stagger-3">Ó</span>
-                        <span class="letter-reveal stagger-4">N</span>
-                        <span class="letter-reveal stagger-5"> </span>
-                        <span class="letter-reveal stagger-6">U</span>
-                        <span class="letter-reveal stagger-1">R</span>
-                        <span class="letter-reveal stagger-2">B</span>
+                        <span class="letter-reveal stagger-2">L</span>
                         <span class="letter-reveal stagger-3">A</span>
-                        <span class="letter-reveal stagger-4">N</span>
-                        <span class="letter-reveal stagger-5">A</span>
+                        <span class="letter-reveal stagger-4"> </span>
+                        <span class="letter-reveal stagger-5">R</span>
+                        <span class="letter-reveal stagger-6">E</span>
+                        <span class="letter-reveal stagger-1">D</span>
+                        <span class="letter-reveal stagger-2">E</span>
+                        <span class="letter-reveal stagger-3">F</span>
+                        <span class="letter-reveal stagger-4">I</span>
+                        <span class="letter-reveal stagger-5">N</span>
+                        <span class="letter-reveal stagger-6">E</span>
+                        <span class="letter-reveal stagger-1">S</span>
                     </h2>
                     <p class="content-text mb-8 zoom-rotate-in">
-                        Junior & Jheremi desde Lima creando streetwear auténtico
+                        Dos hermanos de Lima que decidieron crear su propia revolución urbana
                     </p>
-                </div>
-                
-                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center explode-in">
-                    <button onclick="scrollToSection('historia')" class="bg-transparent border-2 border-white px-8 py-4 font-black text-lg mega-hover-3d glow-border pulse-glow aggressive-font tracking-wider">
-                        CONOCE LA HISTORIA
-                    </button>
-                    <button onclick="scrollToSection('drops')" class="bg-white text-black px-8 py-4 font-black text-lg mega-hover-3d aggressive-font tracking-wider">
-                        VER DROPS
-                    </button>
-                    <div class="bg-gray-800/80 border border-gray-400 px-6 py-3 text-gray-300 font-black pulse-glow aggressive-font tracking-wider">
-                        NBC SOLD OUT
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center explode-in w-full max-w-4xl mx-auto px-4">
+                        <button onclick="scrollToSection('historia')" class="w-full sm:w-auto bg-transparent border-2 border-white px-6 sm:px-8 py-3 sm:py-4 font-black text-base sm:text-lg mega-hover-3d glow-border pulse-glow aggressive-font tracking-wider">
+                            DESCUBRE NUESTRA LEYENDA
+                        </button>
+                        <button onclick="scrollToSection('drops')" class="w-full sm:w-auto bg-white text-black px-6 sm:px-8 py-3 sm:py-4 font-black text-base sm:text-lg mega-hover-3d aggressive-font tracking-wider">
+                            VER COLECCIÓN
+                        </button>
+                        <div class="w-full sm:w-auto bg-gray-800/80 border border-gray-400 px-4 sm:px-6 py-3 text-gray-300 font-black pulse-glow aggressive-font tracking-wider text-center text-sm sm:text-base">
+                            NBC SOLD OUT
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Historia Section -->
-        <section id="historia" class="section-spacing relative">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16 explode-in">
-                    <h2 class="urban-font section-title text-white">LA HISTORIA</h2>
-                    <p class="text-2xl text-gray-300 max-w-3xl mx-auto aggressive-font font-bold tracking-wide">
-                        DESDE LAS CALLES DE LIMA HASTA CONVERTIRSE EN REVOLUCIÓN URBANA
-                    </p>
-                </div>
-                
-                <div class="max-w-6xl mx-auto space-y-24">
-                    <!-- Capítulo 1 -->
-                    <div class="grid lg:grid-cols-2 gap-16 items-center">
-                        <div class="slide-bounce-left">
-                            <div class="bg-gray-800/60 border border-gray-400 px-4 py-2 inline-block mb-6 text-gray-300 font-bold tech-font">
-                                01 / EL INICIO
-                            </div>
-                            <h3 class="street-font text-5xl mb-6 text-white tracking-wide">DOS AMIGOS, UNA VISIÓN</h3>
-                            <p class="content-text mb-8">
-                                Todo comenzó con <span class="text-white font-bold">Junior y Jheremi</span>, dos amigos con una idea clara: crear streetwear auténtico desde Perú. Sin mucho capital, pero con mucha pasión por la cultura urbana.
-                            </p>
-                            <div class="grid grid-cols-2 gap-6">
-                                <div class="bg-black/70 p-6 text-center glow-border pulse-glow mega-hover-3d">
-                                    <div class="text-3xl font-black text-white urban-font">2024</div>
-                                    <div class="text-gray-400 tech-font">FUNDACIÓN</div>
-                                </div>
-                                <div class="bg-gray-700/50 p-6 text-center glow-border mega-hover-3d">
-                                    <div class="text-3xl font-black text-white urban-font">LIMA</div>
-                                    <div class="text-gray-400 tech-font">ORIGEN</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slide-bounce-right">
-                            <div class="bg-black/80 p-12 text-center mega-hover-3d glow-border pulse-glow relative overflow-hidden">
-                                <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent slow-rotate"></div>
-                                <div class="relative z-10">
-                                    <div class="text-8xl mb-6">🤝</div>
-                                    <div class="text-2xl font-black mb-4 text-white urban-font">JUNIOR & JHEREMI</div>
-                                    <div class="text-gray-400 tech-font">Fundadores de Crisis</div>
-                                    <div class="mt-6 w-full h-1 bg-gradient-to-r from-white via-gray-500 to-black"></div>
-                                </div>
-                            </div>
-                        </div>
+            <!-- Historia Section -->
+            <section id="historia" class="section-spacing relative">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16 fade-up-section">
+                        <h2 class="urban-font section-title text-white stagger-child">LA HISTORIA</h2>
+                        <p class="text-2xl text-gray-300 max-w-3xl mx-auto aggressive-font font-bold tracking-wide stagger-child">
+                            CUANDO LA PASIÓN SE ENCUENTRA CON LA REBELDÍA, NACE UNA MARCA LEGENDARIA
+                        </p>
                     </div>
                     
-                    <!-- Capítulo 2 -->
-                    <div class="grid lg:grid-cols-2 gap-16 items-center">
-                        <div class="bg-white text-black p-12 text-center mega-hover-3d lg:order-2 slide-bounce-right relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-br from-gray-200 to-white reverse-rotate opacity-50"></div>
-                            <div class="relative z-10">
-                                <div class="text-8xl mb-6">🧵</div>
-                                <div class="text-2xl font-black mb-2 urban-font">PROCESO</div>
-                                <div class="text-2xl font-black mb-4 urban-font">ARTESANAL</div>
-                                <div class="text-gray-700 tech-font">De la tela al estampado</div>
-                                <div class="mt-6 grid grid-cols-3 gap-2">
-                                    <div class="w-full h-2 bg-black"></div>
-                                    <div class="w-full h-2 bg-gray-500"></div>
-                                    <div class="w-full h-2 bg-black"></div>
+                    <div class="max-w-6xl mx-auto space-y-24">
+                        <!-- Capítulo 1 -->
+                        <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center fade-up-section">
+                            <div class="slide-in-left px-4 lg:px-0 stagger-child">
+                                <div class="bg-gray-800/60 border border-gray-400 px-3 sm:px-4 py-2 inline-block mb-4 sm:mb-6 text-gray-300 font-bold tech-font text-sm sm:text-base">
+                                    01 / EL INICIO
                                 </div>
-                            </div>
-                        </div>
-                        <div class="lg:order-1 slide-bounce-left">
-                            <div class="bg-gray-700/60 border border-gray-400 px-4 py-2 inline-block mb-6 text-gray-300 font-bold tech-font">
-                                02 / EL PROCESO
-                            </div>
-                            <h3 class="street-font text-5xl mb-6 text-white tracking-wide">HECHO A MANO</h3>
-                            <p class="content-text mb-8">
-                                Fuimos nosotros mismos a comprar cada metro de tela. Supervisamos la confección de cada pieza. Diseñamos y estampamos cada polo con nuestras propias manos.
-                            </p>
-                            <div class="space-y-4">
-                                <div class="flex items-center space-x-4 bg-black/50 p-4 glow-border mega-hover-3d mouse-interactive">
-                                    <div class="w-4 h-4 bg-white slow-rotate"></div>
-                                    <span class="font-bold tech-font">Selección personal de telas</span>
-                                </div>
-                                <div class="flex items-center space-x-4 bg-gray-800/50 p-4 glow-border mega-hover-3d mouse-interactive">
-                                    <div class="w-4 h-4 bg-gray-400 reverse-rotate"></div>
-                                    <span class="font-bold tech-font">Confección supervisada</span>
-                                </div>
-                                <div class="flex items-center space-x-4 bg-black/50 p-4 glow-border mega-hover-3d mouse-interactive">
-                                    <div class="w-4 h-4 bg-white slow-rotate"></div>
-                                    <span class="font-bold tech-font">Estampado original</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Capítulo 3 -->
-                    <div class="grid lg:grid-cols-2 gap-16 items-center">
-                        <div class="slide-bounce-left">
-                            <div class="bg-gray-600/60 border border-gray-300 px-4 py-2 inline-block mb-6 text-gray-200 font-bold tech-font">
-                                03 / PRIMER DROP
-                            </div>
-                            <h3 class="street-font text-5xl mb-6 text-white tracking-wide">NBC NACE</h3>
-                            <p class="content-text mb-8">
-                                <span class="text-white font-bold">"Negros Bien Chingones"</span> - nuestro primer drop que marcó el inicio de Crisis. Polos oversize que representan nuestra identidad urbana.
-                            </p>
-                            <div class="bg-gray-800/60 p-6 border-l-4 border-white glow-border pulse-glow">
-                                <div class="text-xl font-black text-white urban-font">"No es solo ropa, es una declaración"</div>
-                                <div class="text-gray-400 mt-2 font-bold tech-font">- Filosofía Crisis</div>
-                            </div>
-                        </div>
-                        <div class="slide-bounce-right">
-                            <div class="bg-black/80 p-12 text-center mega-hover-3d glow-border pulse-glow relative overflow-hidden">
-                                <div class="absolute inset-0 bg-gradient-to-br from-gray-600/20 to-transparent slow-rotate"></div>
-                                <div class="relative z-10">
-                                    <div class="w-40 h-40 mx-auto bg-gradient-to-br from-gray-600 to-black mb-6 flex items-center justify-center border-4 border-white/20 reverse-rotate">
-                                        <span class="text-6xl">👕</span>
+                                <h3 class="street-font text-3xl sm:text-4xl lg:text-5xl mb-4 sm:mb-6 text-white tracking-wide">HERMANOS DE SANGRE Y SUEÑOS</h3>
+                                <p class="content-text mb-6 sm:mb-8">
+                                    En las calles de Lima, <span class="text-white font-bold">Junior y Jheremi</span> vieron lo que otros ignoraban: una generación hambrienta de identidad propia. No tenían dinero, pero sí algo más valioso: <span class="text-white font-bold">la visión de crear algo que nunca había existido en Perú</span>.
+                                </p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                                    <div class="bg-black/70 p-4 sm:p-6 text-center glow-border pulse-glow mega-hover-3d">
+                                        <div class="text-2xl sm:text-3xl font-black text-white urban-font">2024</div>
+                                        <div class="text-gray-400 tech-font text-sm sm:text-base">FUNDACIÓN</div>
                                     </div>
-                                    <div class="text-2xl font-black mb-2 text-white urban-font">POLO NBC</div>
-                                    <div class="text-gray-400 mb-6 tech-font">Oversize / Boxy Fit</div>
-                                    <div class="bg-gray-700 text-white py-3 px-6 font-black pulse-glow tech-font">
-                                        SOLD OUT
+                                    <div class="bg-gray-700/50 p-4 sm:p-6 text-center glow-border mega-hover-3d">
+                                        <div class="text-2xl sm:text-3xl font-black text-white urban-font">LIMA</div>
+                                        <div class="text-gray-400 tech-font text-sm sm:text-base">ORIGEN</div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Drops Section -->
-        <section id="drops" class="section-spacing relative">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="urban-font section-title text-white">DROPS</h2>
-                    <p class="text-2xl text-gray-300 max-w-4xl mx-auto aggressive-font font-bold tracking-wide">
-                        CADA PIEZA ES UNA DECLARACIÓN CONTRA LO COMÚN
-                    </p>
-                </div>
-                
-                <!-- NBC Drop -->
-                <div class="max-w-6xl mx-auto mb-20">
-                    <div class="grid lg:grid-cols-2 gap-16 items-center">
-                        <div>
-                            <div class="bg-black/80 p-12 glow-border relative">
-                                <div class="absolute -top-3 -right-3 bg-gray-700 text-white px-4 py-2 font-black text-sm tech-font">
-                                    SOLD OUT
-                                </div>
-                                <div class="text-center">
-                                    <div class="w-80 h-80 mx-auto bg-gradient-to-br from-gray-700 to-black mb-8 flex items-center justify-center border-4 border-white/20">
-                                        <span class="text-8xl">👕</span>
+                            <div class="slide-in-right stagger-child">
+                                <div class="bg-black/80 p-12 text-center mega-hover-3d glow-border pulse-glow relative overflow-hidden">
+                                    <div class="relative z-10">
+                                        <div class="text-8xl mb-6">🤝</div>
+                                        <div class="text-2xl font-black mb-4 text-white urban-font">JUNIOR & JHEREMI</div>
+                                        <div class="text-gray-400 tech-font">Fundadores de Crisis</div>
+                                        <div class="mt-6 w-full h-1 bg-gradient-to-r from-white via-gray-500 to-black"></div>
                                     </div>
-                                    <div class="text-4xl font-black mb-4 text-white street-font">POLO NBC</div>
-                                    <div class="text-gray-400 text-xl mb-6 font-bold tech-font">NEGROS BIEN CHINGONES</div>
-                                    <div class="text-5xl font-black mb-8 text-white modern-font">S/. 45</div>
-                                    <button class="w-full bg-gray-700 text-white py-4 font-black text-xl tech-font hover:bg-gray-600 transition-colors duration-300">
-                                        AGOTADO
-                                    </button>
                                 </div>
                             </div>
                         </div>
                         
-                        <div>
-                            <div class="bg-white/10 border border-white/20 px-4 py-2 inline-block mb-6 text-white font-bold tech-font">
-                                PRIMER DROP
+                        <!-- Capítulo 2 -->
+                        <div class="grid lg:grid-cols-2 gap-16 items-center fade-up-section">
+                            <div class="bg-white text-black p-12 text-center mega-hover-3d lg:order-2 slide-in-right stagger-child relative overflow-hidden">
+                                <div class="relative z-10">
+                                    <div class="text-8xl mb-6">🧵</div>
+                                    <div class="text-2xl font-black mb-2 urban-font">PROCESO</div>
+                                    <div class="text-2xl font-black mb-4 urban-font">ARTESANAL</div>
+                                    <div class="text-gray-700 tech-font">De la tela al estampado</div>
+                                    <div class="mt-6 grid grid-cols-3 gap-2">
+                                        <div class="w-full h-2 bg-black"></div>
+                                        <div class="w-full h-2 bg-gray-500"></div>
+                                        <div class="w-full h-2 bg-black"></div>
+                                    </div>
+                                </div>
                             </div>
-                            <h3 class="street-font text-6xl mb-8 text-white">NBC REVOLUTION</h3>
-                            <p class="content-text mb-10">
-                                Nuestro primer statement al mundo streetwear peruano. Cada polo NBC representa la <span class="text-white font-bold">autenticidad de las calles limeñas</span> y la rebeldía de una nueva generación.
+                            <div class="lg:order-1 slide-in-left stagger-child">
+                                <div class="bg-gray-700/60 border border-gray-400 px-4 py-2 inline-block mb-6 text-gray-300 font-bold tech-font">
+                                    02 / EL PROCESO
+                                </div>
+                                <h3 class="street-font text-5xl mb-6 text-white tracking-wide">OBSESIÓN POR LA PERFECCIÓN</h3>
+                                <p class="content-text mb-8">
+                                    Mientras otros tercerizaban todo, nosotros elegimos el camino difícil. <span class="text-white font-bold">Cada hilo, cada corte, cada estampado pasó por nuestras manos</span>. No era solo crear ropa, era forjar una filosofía: si no está perfecto, no lleva nuestro nombre.
+                                </p>
+                                <div class="space-y-4">
+                                    <div class="flex items-center space-x-4 bg-black/50 p-4 glow-border mega-hover-3d">
+                                        <div class="w-4 h-4 bg-white"></div>
+                                        <span class="font-bold tech-font">Selección personal de telas</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 bg-gray-800/50 p-4 glow-border mega-hover-3d">
+                                        <div class="w-4 h-4 bg-gray-400"></div>
+                                        <span class="font-bold tech-font">Confección supervisada</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 bg-black/50 p-4 glow-border mega-hover-3d">
+                                        <div class="w-4 h-4 bg-white"></div>
+                                        <span class="font-bold tech-font">Estampado original</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Capítulo 3 -->
+                        <div class="grid lg:grid-cols-2 gap-16 items-center fade-up-section">
+                            <div class="slide-in-left stagger-child">
+                                <div class="bg-gray-600/60 border border-gray-300 px-4 py-2 inline-block mb-6 text-gray-200 font-bold tech-font">
+                                    03 / PRIMER DROP
+                                </div>
+                                <h3 class="street-font text-5xl mb-6 text-white tracking-wide">EL PRIMER GRITO</h3>
+                                <p class="content-text mb-8">
+                                    <span class="text-white font-bold">"Negros Bien Chingones"</span> no fue solo un nombre, fue una declaración de guerra contra lo establecido. Cada polo NBC que salió a la calle llevaba nuestra alma, nuestro orgullo, nuestra rebeldía. <span class="text-white font-bold">Era el momento de que Lima supiera que Crisis había llegado para quedarse</span>.
+                                </p>
+                                <div class="bg-gray-800/60 p-6 border-l-4 border-white glow-border pulse-glow">
+                                    <div class="text-xl font-black text-white urban-font">"Cada pieza que creamos es un pedazo de nuestra historia"</div>
+                                    <div class="text-gray-400 mt-2 font-bold tech-font">- Junior & Jheremi, Fundadores</div>
+                                </div>
+                            </div>
+                            <div class="slide-in-right stagger-child">
+                                <div class="bg-black/80 p-12 text-center mega-hover-3d glow-border pulse-glow relative overflow-hidden">
+                                    <div class="relative z-10">
+                                        <div class="w-40 h-40 mx-auto bg-gradient-to-br from-gray-600 to-black mb-6 flex items-center justify-center border-4 border-white/20">
+                                            <span class="text-6xl">👕</span>
+                                        </div>
+                                        <div class="text-2xl font-black mb-2 text-white urban-font">POLO NBC</div>
+                                        <div class="text-gray-400 mb-6 tech-font">Oversize / Boxy Fit</div>
+                                        <div class="bg-gray-700 text-white py-3 px-6 font-black pulse-glow tech-font">
+                                            SOLD OUT
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Drops Section -->
+            <section id="drops" class="section-spacing relative">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16 fade-up-section">
+                        <h2 class="urban-font section-title text-white stagger-child">DROPS</h2>
+                        <p class="text-2xl text-gray-300 max-w-4xl mx-auto aggressive-font font-bold tracking-wide stagger-child">
+                            NO VENDEMOS ROPA, VENDEMOS ACTITUD. NO CREAMOS PRODUCTOS, CREAMOS LEYENDAS
+                        </p>
+                    </div>
+                    
+                    <!-- NBC Drop -->
+                    <div class="max-w-6xl mx-auto mb-20 fade-up-section">
+                        <div class="grid lg:grid-cols-2 gap-16 items-center">
+                            <div class="scale-in stagger-child">
+                                <div class="bg-black/80 p-12 glow-border relative">
+                                    <div class="absolute -top-3 -right-3 bg-gray-700 text-white px-4 py-2 font-black text-sm tech-font">
+                                        SOLD OUT
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="w-80 h-80 mx-auto bg-gradient-to-br from-gray-700 to-black mb-8 flex items-center justify-center border-4 border-white/20">
+                                            <span class="text-8xl">👕</span>
+                                        </div>
+                                        <div class="text-4xl font-black mb-4 text-white street-font">POLO NBC</div>
+                                        <div class="text-gray-400 text-xl mb-6 font-bold tech-font">NEGROS BIEN CHINGONES</div>
+                                        <div class="text-5xl font-black mb-8 text-white modern-font">S/. 45</div>
+                                        <button class="w-full bg-gray-700 text-white py-4 font-black text-xl tech-font hover:bg-gray-600 transition-colors duration-300">
+                                            AGOTADO
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="slide-in-right stagger-child">
+                                <div class="bg-white/10 border border-white/20 px-4 py-2 inline-block mb-6 text-white font-bold tech-font">
+                                    PRIMER DROP
+                                </div>
+                                <h3 class="street-font text-6xl mb-8 text-white">LA LEYENDA NBC</h3>
+                                <p class="content-text mb-10">
+                                    El drop que cambió todo. NBC no fue solo nuestro debut, fue <span class="text-white font-bold">el momento exacto en que el streetwear peruano encontró su voz</span>. Cada polo vendido fue un voto de confianza, cada persona que lo usó se convirtió en embajador de nuestra revolución.
+                                </p>
+                                
+                                <div class="grid grid-cols-2 gap-6 mb-10">
+                                    <div class="bg-black/70 p-6 text-center glow-border">
+                                        <div class="text-3xl font-black text-white street-font">OVERSIZE</div>
+                                        <div class="text-gray-400 tech-font">Corte perfecto</div>
+                                    </div>
+                                    <div class="bg-gray-700/50 p-6 text-center glow-border">
+                                        <div class="text-3xl font-black text-white street-font">100%</div>
+                                        <div class="text-gray-400 tech-font">Algodón premium</div>
+                                    </div>
+                                    <div class="bg-gray-800/70 p-6 text-center glow-border">
+                                        <div class="text-3xl font-black text-white street-font">ÚNICO</div>
+                                        <div class="text-gray-300 tech-font">Diseño original</div>
+                                    </div>
+                                    <div class="bg-black/50 p-6 text-center glow-border">
+                                        <div class="text-3xl font-black text-white street-font">LIMA</div>
+                                        <div class="text-gray-400 tech-font">Hecho en Perú</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-gray-700/60 p-8 border-l-4 border-white glow-border">
+                                    <div class="text-gray-300 font-bold mb-2 tech-font">LA LEYENDA REGRESA</div>
+                                    <div class="text-xl font-black text-white modern-font">NBC volverá más fuerte que nunca</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Coming Soon -->
+                    <div class="text-center fade-up-section">
+                        <div class="bg-white text-black p-8 mb-12 inline-block glow-border stagger-child">
+                            <h3 class="street-font text-5xl font-black">VERANO 2025</h3>
+                            <p class="text-black font-bold tech-font text-lg mt-2">LA TEMPORADA MÁS CALIENTE</p>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+                            <div class="bg-gray-800/80 p-10 glow-border hover:bg-gray-700/80 transition-all duration-500 mega-hover-3d scale-in stagger-child">
+                                <div class="text-7xl mb-6">🩳</div>
+                                <h4 class="text-3xl font-black mb-4 text-white street-font">SHORTS CRISIS</h4>
+                                <p class="text-gray-300 tech-font font-bold text-lg mb-4">COLECCIÓN VERANO</p>
+                                <div class="space-y-2 text-gray-300 text-sm">
+                                    <p>• Tela premium anti-UV</p>
+                                    <p>• Corte oversize perfecto</p>
+                                    <p>• Diseños exclusivos</p>
+                                </div>
+                                <div class="mt-6 bg-gradient-to-r from-white to-gray-400 h-3 rounded-full"></div>
+                                <div class="mt-4 text-white font-black tech-font">ENERO 2025</div>
+                            </div>
+                            
+                            <div class="bg-black/90 p-10 glow-border hover:bg-black transition-all duration-500 mega-hover-3d scale-in stagger-child">
+                                <div class="text-7xl mb-6">🏖️</div>
+                                <h4 class="text-3xl font-black mb-4 text-white street-font">BEACH COLLECTION</h4>
+                                <p class="text-gray-300 tech-font font-bold text-lg mb-4">EDICIÓN LIMITADA</p>
+                                <div class="space-y-2 text-gray-300 text-sm">
+                                    <p>• Camisetas de playa</p>
+                                    <p>• Gorras exclusivas</p>
+                                    <p>• Accesorios de verano</p>
+                                </div>
+                                <div class="mt-6 bg-gradient-to-r from-gray-400 to-white h-3 rounded-full"></div>
+                                <div class="mt-4 text-gray-300 font-black tech-font">FEBRERO 2025</div>
+                            </div>
+                            
+                            <div class="bg-gray-700/80 p-10 glow-border hover:bg-gray-600/80 transition-all duration-500 mega-hover-3d scale-in stagger-child">
+                                <div class="text-7xl mb-6">⛓️</div>
+                                <h4 class="text-3xl font-black mb-4 text-white street-font">URBAN JEWELRY</h4>
+                                <p class="text-gray-300 tech-font font-bold text-lg mb-4">ACCESORIOS PREMIUM</p>
+                                <div class="space-y-2 text-gray-300 text-sm">
+                                    <p>• Cadenas de acero inoxidable</p>
+                                    <p>• Anillos con logo Crisis</p>
+                                    <p>• Pulseras edición limitada</p>
+                                </div>
+                                <div class="mt-6 bg-gradient-to-r from-gray-500 to-white h-3 rounded-full"></div>
+                                <div class="mt-4 text-gray-400 font-black tech-font">MARZO 2025</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Newsletter -->
+                        <div class="bg-gradient-to-br from-black/90 to-gray-900/90 p-12 max-w-3xl mx-auto glow-border scale-in stagger-child">
+                            <div class="text-center mb-8">
+                                <div class="text-6xl mb-4">🔥</div>
+                                <h4 class="street-font text-4xl mb-4 text-white">FORMA PARTE DE LA HISTORIA</h4>
+                                <p class="content-text tech-font text-lg">Los drops de Crisis se agotan en minutos. No te quedes fuera de la próxima leyenda.</p>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                                <div class="bg-white/10 p-4 text-center glow-border">
+                                    <div class="text-2xl font-black text-white urban-font">ACCESO VIP</div>
+                                    <div class="text-gray-400 tech-font text-sm">Drops exclusivos</div>
+                                </div>
+                                <div class="bg-white/10 p-4 text-center glow-border">
+                                    <div class="text-2xl font-black text-white urban-font">DESCUENTOS</div>
+                                    <div class="text-gray-400 tech-font text-sm">Solo para suscriptores</div>
+                                </div>
+                                <div class="bg-white/10 p-4 text-center glow-border">
+                                    <div class="text-2xl font-black text-white urban-font">PRIMERO</div>
+                                    <div class="text-gray-400 tech-font text-sm">En enterarte de todo</div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <input type="email" placeholder="tu@email.com" class="w-full px-6 py-4 bg-black/70 border border-white/20 text-white placeholder-gray-400 focus:border-white transition-all duration-300 tech-font text-lg">
+                                <button class="w-full bg-white text-black py-4 font-black text-xl hover:bg-gray-200 transition-all duration-300 tech-font mega-hover-3d">
+                                    CONVERTIRME EN LEYENDA
+                                </button>
+                            </div>
+                            <p class="text-gray-500 mt-6 tech-font text-center">
+                                ✅ Sin spam, solo fuego &nbsp;&nbsp; ✅ Cancela cuando quieras &nbsp;&nbsp; ✅ 100% gratis
                             </p>
-                            
-                            <div class="grid grid-cols-2 gap-6 mb-10">
-                                <div class="bg-black/70 p-6 text-center glow-border">
-                                    <div class="text-3xl font-black text-white street-font">OVERSIZE</div>
-                                    <div class="text-gray-400 tech-font">Corte perfecto</div>
-                                </div>
-                                <div class="bg-gray-700/50 p-6 text-center glow-border">
-                                    <div class="text-3xl font-black text-white street-font">100%</div>
-                                    <div class="text-gray-400 tech-font">Algodón premium</div>
-                                </div>
-                                <div class="bg-gray-800/70 p-6 text-center glow-border">
-                                    <div class="text-3xl font-black text-white street-font">ÚNICO</div>
-                                    <div class="text-gray-300 tech-font">Diseño original</div>
-                                </div>
-                                <div class="bg-black/50 p-6 text-center glow-border">
-                                    <div class="text-3xl font-black text-white street-font">LIMA</div>
-                                    <div class="text-gray-400 tech-font">Hecho en Perú</div>
-                                </div>
-                            </div>
-                            
-                            <div class="bg-gray-700/60 p-8 border-l-4 border-white glow-border">
-                                <div class="text-gray-300 font-bold mb-2 tech-font">PRÓXIMO RESTOCK</div>
-                                <div class="text-xl font-black text-white modern-font">Suscríbete para ser el primero</div>
-                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Coming Soon -->
-                <div class="text-center">
-                    <div class="bg-black/80 p-6 mb-12 inline-block glow-border">
-                        <h3 class="street-font text-5xl text-white">PRÓXIMO DROP</h3>
-                    </div>
-                    
-                    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
-                        <div class="bg-black/80 p-8 glow-border hover:bg-black/90 transition-colors duration-300">
-                            <div class="text-6xl mb-6">🩳</div>
-                            <h4 class="text-2xl font-black mb-4 text-white street-font">SHORTS</h4>
-                            <p class="text-gray-400 tech-font">Colección verano 2024</p>
-                            <div class="mt-6 w-full h-2 bg-gradient-to-r from-white via-gray-500 to-black"></div>
-                        </div>
-                        <div class="bg-gray-900/80 p-8 glow-border hover:bg-gray-900/90 transition-colors duration-300">
-                            <div class="text-6xl mb-6">⛓️</div>
-                            <h4 class="text-2xl font-black mb-4 text-white street-font">JOYERÍA</h4>
-                            <p class="text-gray-400 tech-font">Accesorios urbanos</p>
-                            <div class="mt-6 w-full h-2 bg-gradient-to-r from-black via-gray-400 to-white"></div>
-                        </div>
-                        <div class="bg-black/80 p-8 glow-border hover:bg-black/90 transition-colors duration-300">
-                            <div class="text-6xl mb-6">👕</div>
-                            <h4 class="text-2xl font-black mb-4 text-white street-font">NUEVOS POLOS</h4>
-                            <p class="text-gray-400 tech-font">Diseños exclusivos</p>
-                            <div class="mt-6 w-full h-2 bg-gradient-to-r from-gray-600 via-white to-gray-800"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Newsletter -->
-                    <div class="bg-black/80 p-12 max-w-2xl mx-auto glow-border">
-                        <h4 class="street-font text-4xl mb-6 text-white">ÚNETE A LA REVOLUCIÓN</h4>
-                        <p class="content-text mb-8 tech-font">Sé el primero en saber de nuevos drops</p>
-                        <div class="space-y-6">
-                            <input type="email" placeholder="tu@email.com" class="w-full px-6 py-4 bg-black/70 border border-white/20 text-white placeholder-gray-400 focus:border-white transition-all duration-300 tech-font">
-                            <button class="w-full bg-white text-black py-4 font-black text-xl hover:bg-gray-200 transition-colors duration-300 tech-font">
-                                UNIRSE A CRISIS
-                            </button>
-                        </div>
-                        <p class="text-gray-500 mt-4 tech-font">
-                            Solo contenido de calidad, nada de spam
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Contact Section -->
-        <section id="contacto" class="section-spacing">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16 explode-in">
-                    <h2 class="urban-font section-title text-white">CONTACTO</h2>
-                    <p class="text-2xl text-gray-300 tech-font">Conecta con Crisis</p>
-                </div>
-                
-                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                    <a href="https://instagram.com/crisis_pe" target="_blank" class="bg-black/80 p-10 mega-hover-3d glow-border pulse-glow block text-center zoom-rotate-in stagger-1 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent slow-rotate"></div>
-                        <div class="relative z-10">
+            <!-- Contact Section -->
+            <section id="contacto" class="section-spacing">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16 fade-up-section">
+                        <h2 class="urban-font section-title text-white stagger-child">CONTACTO</h2>
+                        <p class="text-2xl text-gray-300 tech-font stagger-child">¿Tienes lo que se necesita para ser parte de la revolución?</p>
+                    </div>
+                    
+                    <!-- Redes Sociales -->
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-16 fade-up-section">
+                        <a href="https://instagram.com/crisis_pe" target="_blank" class="bg-gray-800/80 p-8 mega-hover-3d glow-border block text-center scale-in stagger-child hover:bg-gray-700/80 transition-all duration-300">
                             <div class="text-5xl mb-4">📱</div>
-                            <h3 class="text-xl font-bold mb-2 urban-font">INSTAGRAM</h3>
+                            <h3 class="text-xl font-bold mb-2 urban-font text-white">INSTAGRAM</h3>
                             <p class="text-gray-300 tech-font">@crisis_pe</p>
-                            <div class="mt-4 text-sm text-gray-400 tech-font">Síguenos para contenido diario</div>
-                        </div>
-                    </a>
+                            <div class="mt-4 text-sm text-gray-400 tech-font">Donde nacen las leyendas</div>
+                        </a>
+                        
+                        <a href="https://tiktok.com/@crisis_pe" target="_blank" class="bg-black/90 p-8 mega-hover-3d glow-border block text-center scale-in stagger-child hover:bg-black transition-all duration-300">
+                            <div class="text-5xl mb-4">🎵</div>
+                            <h3 class="text-xl font-bold mb-2 urban-font text-white">TIKTOK</h3>
+                            <p class="text-white tech-font">@crisis_pe</p>
+                            <div class="mt-4 text-sm text-gray-400 tech-font">Contenido viral diario</div>
+                        </a>
+                        
+                        <a href="https://facebook.com/crisispe" target="_blank" class="bg-gray-700/80 p-8 mega-hover-3d glow-border block text-center scale-in stagger-child hover:bg-gray-600/80 transition-all duration-300">
+                            <div class="text-5xl mb-4">👥</div>
+                            <h3 class="text-xl font-bold mb-2 urban-font text-white">FACEBOOK</h3>
+                            <p class="text-gray-300 tech-font">Crisis Streetwear</p>
+                            <div class="mt-4 text-sm text-gray-400 tech-font">Comunidad oficial</div>
+                        </a>
+                        
+                        <a href="https://youtube.com/@crisispe" target="_blank" class="bg-gray-600/80 p-8 mega-hover-3d glow-border block text-center scale-in stagger-child hover:bg-gray-500/80 transition-all duration-300">
+                            <div class="text-5xl mb-4">📺</div>
+                            <h3 class="text-xl font-bold mb-2 urban-font text-white">YOUTUBE</h3>
+                            <p class="text-gray-300 tech-font">Crisis TV</p>
+                            <div class="mt-4 text-sm text-gray-400 tech-font">Behind the scenes</div>
+                        </a>
+                    </div>
                     
-                    <div class="bg-white text-black p-10 text-center mega-hover-3d zoom-rotate-in stagger-2 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-gray-200 to-white reverse-rotate opacity-50"></div>
-                        <div class="relative z-10">
-                            <div class="text-5xl mb-4">📧</div>
-                            <h3 class="text-xl font-bold mb-2 urban-font">EMAIL</h3>
-                            <p class="text-gray-800 tech-font">contacto@crisispe.com</p>
-                            <div class="mt-4 text-sm text-gray-600 tech-font">Para colaboraciones</div>
+                    <!-- Información de Contacto -->
+                    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16 fade-up-section">
+                        <div class="bg-white text-black p-10 text-center mega-hover-3d slide-in-left stagger-child relative overflow-hidden">
+                            <div class="relative z-10">
+                                <div class="text-6xl mb-6">📧</div>
+                                <h3 class="text-2xl font-bold mb-4 urban-font">EMAIL DIRECTO</h3>
+                                <p class="text-gray-800 tech-font text-lg mb-2">contacto@crisispe.com</p>
+                                <div class="mt-4 text-sm text-gray-600 tech-font">Solo para los que hablan en serio</div>
+                                <div class="mt-6 bg-black h-1 w-full"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-gray-800/80 to-black/80 p-10 glow-border text-center mega-hover-3d slide-in-right stagger-child relative overflow-hidden">
+                            <div class="relative z-10">
+                                <div class="text-6xl mb-6">🇵🇪</div>
+                                <h3 class="text-2xl font-bold mb-4 urban-font">UBICACIÓN</h3>
+                                <p class="text-gray-300 tech-font text-lg mb-2">Lima, Perú</p>
+                                <div class="mt-4 text-sm text-gray-400 tech-font">Epicentro de la revolución urbana</div>
+                                <div class="mt-6 bg-gradient-to-r from-white to-gray-500 h-1 w-full"></div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="bg-gray-800/80 p-10 glow-border text-center mega-hover-3d zoom-rotate-in stagger-3 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-gray-600/10 to-transparent slow-rotate"></div>
-                        <div class="relative z-10">
-                            <div class="text-5xl mb-4">🇵🇪</div>
-                            <h3 class="text-xl font-bold mb-2 urban-font">UBICACIÓN</h3>
-                            <p class="text-gray-300 tech-font">Lima, Perú</p>
-                            <div class="mt-4 text-sm text-gray-400 tech-font">Streetwear desde las calles</div>
+                    <!-- Formulario de Contacto -->
+                    <div class="max-w-2xl mx-auto fade-up-section">
+                        <div class="bg-gradient-to-br from-black/90 to-gray-900/90 p-10 glow-border scale-in stagger-child">
+                            <div class="text-center mb-8">
+                                <div class="text-5xl mb-4">💬</div>
+                                <h3 class="street-font text-3xl mb-4 text-white">ENVÍANOS UN MENSAJE</h3>
+                                <p class="text-gray-300 tech-font">¿Colaboraciones? ¿Consultas? ¿Ideas locas? Escríbenos.</p>
+                            </div>
+                            
+                            <form class="space-y-6">
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <input type="text" placeholder="Tu nombre" class="w-full px-6 py-4 bg-black/70 border border-white/20 text-white placeholder-gray-400 focus:border-white transition-all duration-300 tech-font">
+                                    <input type="email" placeholder="Tu email" class="w-full px-6 py-4 bg-black/70 border border-white/20 text-white placeholder-gray-400 focus:border-white transition-all duration-300 tech-font">
+                                </div>
+                                <input type="text" placeholder="Asunto" class="w-full px-6 py-4 bg-black/70 border border-white/20 text-white placeholder-gray-400 focus:border-white transition-all duration-300 tech-font">
+                                <textarea placeholder="Tu mensaje..." rows="5" class="w-full px-6 py-4 bg-black/70 border border-white/20 text-white placeholder-gray-400 focus:border-white transition-all duration-300 tech-font resize-none"></textarea>
+                                <button type="submit" class="w-full bg-white text-black py-4 font-black text-xl hover:bg-gray-200 transition-all duration-300 tech-font mega-hover-3d">
+                                    ENVIAR MENSAJE
+                                </button>
+                            </form>
+                            
+                            <p class="text-gray-500 mt-6 tech-font text-center text-sm">
+                                📱 Respuesta en menos de 24 horas &nbsp;&nbsp; ✅ 100% confidencial
+                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Footer -->
-        <footer class="bg-black/95 py-12 border-t border-gray-700 pulse-glow">
-            <div class="container mx-auto px-6">
-                <div class="text-center">
-                    <div class="urban-font text-4xl mb-6 text-white font-black tracking-widest">CRISIS</div>
-                    <div class="grid md:grid-cols-3 gap-8 mb-8 max-w-2xl mx-auto">
-                        <div>
-                            <h4 class="font-bold mb-2 urban-font">LA MARCA</h4>
-                            <p class="text-sm text-gray-400 tech-font">Streetwear auténtico</p>
+            <!-- Footer -->
+            <footer class="bg-gradient-to-t from-black to-gray-900 py-16 border-t border-gray-700 fade-up-section relative overflow-hidden" id="footer">
+                <!-- Enhanced Parallax Background Elements -->
+                <div class="parallax-bg-1 absolute inset-0 opacity-12"></div>
+                <div class="parallax-bg-2 absolute inset-0 opacity-8"></div>
+                <div class="parallax-bg-3 absolute inset-0 opacity-18"></div>
+                <div class="parallax-bg-4 absolute inset-0 opacity-6"></div>
+                
+                <div class="container mx-auto px-6 relative z-10">
+                    <!-- Logo y Slogan Principal -->
+                    <div class="text-center mb-12 stagger-child parallax-element" data-speed="0.3">
+                        <div class="urban-font text-6xl mb-4 text-white font-black tracking-widest parallax-logo">CRISIS</div>
+                        <p class="text-xl text-gray-300 aggressive-font font-bold parallax-slogan">LA CALLE NO TE DEFINE, TÚ LA REDEFINÉS</p>
+                        <div class="mt-6 w-32 h-1 bg-gradient-to-r from-white via-gray-500 to-white mx-auto parallax-line"></div>
+                    </div>
+                    
+                    <!-- Grid Principal -->
+                    <div class="grid md:grid-cols-4 gap-8 mb-12 max-w-6xl mx-auto">
+                        <!-- Columna 1: La Marca -->
+                        <div class="text-center md:text-left stagger-child parallax-element" data-speed="0.2">
+                            <h4 class="font-black mb-4 urban-font text-lg text-white">LA MARCA</h4>
+                            <div class="space-y-2 text-gray-400 tech-font">
+                                <p>Streetwear auténtico</p>
+                                <p>Hecho en Lima</p>
+                                <p>Calidad premium</p>
+                                <p>Diseño original</p>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="font-bold mb-2 urban-font">FUNDADORES</h4>
-                            <p class="text-sm text-gray-400 tech-font">Junior & Jheremi</p>
+                        
+                        <!-- Columna 2: Fundadores -->
+                        <div class="text-center md:text-left stagger-child parallax-element" data-speed="0.4">
+                            <h4 class="font-black mb-4 urban-font text-lg text-white">FUNDADORES</h4>
+                            <div class="space-y-2 text-gray-400 tech-font">
+                                <p>Junior Mendoza</p>
+                                <p>Jheremi Castillo</p>
+                                <p>Hermanos de sueños</p>
+                                <p>Visionarios urbanos</p>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="font-bold mb-2 urban-font">ORIGEN</h4>
-                            <p class="text-sm text-gray-400 tech-font">Lima, Perú</p>
+                        
+                        <!-- Columna 3: Productos -->
+                        <div class="text-center md:text-left stagger-child parallax-element" data-speed="0.6">
+                            <h4 class="font-black mb-4 urban-font text-lg text-white">PRODUCTOS</h4>
+                            <div class="space-y-2 text-gray-400 tech-font">
+                                <p>Polos NBC</p>
+                                <p>Shorts de verano</p>
+                                <p>Joyería urbana</p>
+                                <p>Accesorios</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Columna 4: Redes -->
+                        <div class="text-center md:text-left stagger-child parallax-element" data-speed="0.8">
+                            <h4 class="font-black mb-4 urban-font text-lg text-white">SÍGUENOS</h4>
+                            <div class="space-y-3">
+                                <a href="https://instagram.com/crisis_pe" target="_blank" class="block text-gray-300 hover:text-white transition-colors tech-font">
+                                    📱 @crisis_pe
+                                </a>
+                                <a href="https://tiktok.com/@crisis_pe" target="_blank" class="block text-gray-300 hover:text-white transition-colors tech-font">
+                                    🎵 @crisis_pe
+                                </a>
+                                <a href="https://facebook.com/crisispe" target="_blank" class="block text-gray-300 hover:text-white transition-colors tech-font">
+                                    👥 Crisis Streetwear
+                                </a>
+                                <a href="https://youtube.com/@crisispe" target="_blank" class="block text-gray-300 hover:text-white transition-colors tech-font">
+                                    📺 Crisis TV
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="border-t border-gray-800 pt-8">
-                        <p class="text-gray-500 text-sm tech-font">
-                            © 2024 Crisis • Hecho en Lima, Perú • Streetwear auténtico
+                    
+                    <!-- Stats Section -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 max-w-4xl mx-auto stagger-child parallax-element" data-speed="0.5">
+                        <div class="bg-white/10 p-6 text-center glow-border parallax-stat" data-delay="0">
+                            <div class="text-3xl font-black text-white urban-font">2024</div>
+                            <div class="text-gray-400 tech-font text-sm">Año de fundación</div>
+                        </div>
+                        <div class="bg-white/10 p-6 text-center glow-border parallax-stat" data-delay="0.1">
+                            <div class="text-3xl font-black text-white urban-font">100%</div>
+                            <div class="text-gray-400 tech-font text-sm">Sold out NBC</div>
+                        </div>
+                        <div class="bg-white/10 p-6 text-center glow-border parallax-stat" data-delay="0.2">
+                            <div class="text-3xl font-black text-white urban-font">LIMA</div>
+                            <div class="text-gray-400 tech-font text-sm">Origen peruano</div>
+                        </div>
+                        <div class="bg-white/10 p-6 text-center glow-border parallax-stat" data-delay="0.3">
+                            <div class="text-3xl font-black text-white urban-font">∞</div>
+                            <div class="text-gray-400 tech-font text-sm">Potencial infinito</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Copyright -->
+                    <div class="border-t border-gray-800 pt-8 text-center stagger-child parallax-element" data-speed="0.1">
+                        <p class="text-gray-500 tech-font mb-4 parallax-copyright">
+                            © 2024 Crisis Streetwear • Todos los derechos reservados
                         </p>
+                        <p class="text-gray-400 tech-font text-sm parallax-tagline">
+                            🔥 Forjado en las calles de Lima • Donde las leyendas cobran vida • Hecho con pasión en Perú 🇵🇪
+                        </p>
+                        <div class="mt-6 flex justify-center space-x-4 text-xs text-gray-500 tech-font parallax-links">
+                            <a href="#" class="hover:text-gray-300 transition-colors">Términos de uso</a>
+                            <span>•</span>
+                            <a href="#" class="hover:text-gray-300 transition-colors">Política de privacidad</a>
+                            <span>•</span>
+                            <a href="#" class="hover:text-gray-300 transition-colors">Cambios y devoluciones</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
     </div>
 </body>
 <script src="scrip.js"></script>
